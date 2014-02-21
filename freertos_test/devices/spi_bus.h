@@ -11,7 +11,7 @@ struct bus{//структура шины
 	uint16_t bus_buf[IND_COMMAND_LEN][IND_SPI_BUS_1_NUM];
 };
 
-#define BUS_NUM	3//количество шин табло
+#define BUS_NUM	1//
 
 #define BUS_SPI_1	0		//шина индикатора
 #define BUS_SPI_2	1
