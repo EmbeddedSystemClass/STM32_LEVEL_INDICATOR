@@ -68,6 +68,8 @@
     <ExcludeFile/>
   </Target>
   <Components path="./">
+    <Component id="30" name="C Library" path="" type="2"/>
+    <Component id="31" name="Retarget printf" path="" type="2"/>
     <Component id="50" name="CMSIS core" path="" type="2"/>
     <Component id="440" name="RCC" path="" type="2"/>
     <Component id="442" name="PWR" path="" type="2"/>
@@ -92,9 +94,9 @@
     <File name="cmsis_boot" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/tasks.c" path="FreeRTOSV7.1.0/Source/tasks.c" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/croutine.h" path="FreeRTOSV7.1.0/Source/include/croutine.h" type="1"/>
-    <File name="stm_lib/inc/stm32f10x_pwr.h" path="stm_lib/inc/stm32f10x_pwr.h" type="1"/>
-    <File name="stm_lib/src/stm32f10x_tim.c" path="stm_lib/src/stm32f10x_tim.c" type="1"/>
     <File name="FreeRTOSV7.1.0/License" path="" type="2"/>
+    <File name="stm_lib/src/stm32f10x_tim.c" path="stm_lib/src/stm32f10x_tim.c" type="1"/>
+    <File name="stm_lib/inc/stm32f10x_pwr.h" path="stm_lib/inc/stm32f10x_pwr.h" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/include/portable.h" path="FreeRTOSV7.1.0/Source/include/portable.h" type="1"/>
     <File name="devices/spi_bus.c" path="devices/spi_bus.c" type="1"/>
@@ -111,6 +113,7 @@
     <File name="devices/indicator.c" path="devices/indicator.c" type="1"/>
     <File name="stm_lib/inc/stm32f10x_flash.h" path="stm_lib/inc/stm32f10x_flash.h" type="1"/>
     <File name="devices" path="" type="2"/>
+    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis/core_cm3.c" path="cmsis/core_cm3.c" type="1"/>
     <File name="stm_lib/inc/stm32f10x_spi.h" path="stm_lib/inc/stm32f10x_spi.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/projdefs.h" path="FreeRTOSV7.1.0/Source/include/projdefs.h" type="1"/>
@@ -121,6 +124,7 @@
     <File name="protocols/channels.c" path="protocols/channels.c" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/portable" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/timers.c" path="FreeRTOSV7.1.0/Source/timers.c" type="1"/>
+    <File name="stdio/printf.c" path="stdio/printf.c" type="1"/>
     <File name="stm_lib/src/stm32f10x_pwr.c" path="stm_lib/src/stm32f10x_pwr.c" type="1"/>
     <File name="stm_lib/src/stm32f10x_gpio.c" path="stm_lib/src/stm32f10x_gpio.c" type="1"/>
     <File name="stm_lib/inc/stm32f10x_gpio.h" path="stm_lib/inc/stm32f10x_gpio.h" type="1"/>
@@ -128,6 +132,7 @@
     <File name="FreeRTOSV7.1.0" path="" type="2"/>
     <File name="cmsis_boot/system_stm32f10x.c" path="cmsis_boot/system_stm32f10x.c" type="1"/>
     <File name="stm_lib/inc/misc.h" path="stm_lib/inc/misc.h" type="1"/>
+    <File name="stdio" path="" type="2"/>
     <File name="cmsis/core_cm3.h" path="cmsis/core_cm3.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/list.c" path="FreeRTOSV7.1.0/Source/list.c" type="1"/>
     <File name="stm_lib/src/stm32f10x_rcc.c" path="stm_lib/src/stm32f10x_rcc.c" type="1"/>
@@ -151,6 +156,7 @@
     <File name="devices/keyboard.h" path="devices/keyboard.h" type="1"/>
     <File name="cmsis_boot/system_stm32f10x.h" path="cmsis_boot/system_stm32f10x.h" type="1"/>
     <File name="stm_lib/inc/stm32f10x_rcc.h" path="stm_lib/inc/stm32f10x_rcc.h" type="1"/>
+    <File name="syscalls" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/portable/MemMang" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/include/queue.h" path="FreeRTOSV7.1.0/Source/include/queue.h" type="1"/>

@@ -23,5 +23,7 @@
   <File usedCount="2" path="stm_lib/inc/stm32f10x_dma.h"/>  
   <File usedCount="2" path="stm_lib/src/stm32f10x_dma.c"/>  
   <File usedCount="2" path="stm_lib/inc/stm32f10x_tim.h"/>  
-  <File usedCount="2" path="stm_lib/src/stm32f10x_tim.c"/> 
+  <File usedCount="2" path="stm_lib/src/stm32f10x_tim.c"/>  
+  <File usedCount="2" path="syscalls/syscalls.c"/>  
+  <File usedCount="2" path="stdio/printf.c"/>
 </History>

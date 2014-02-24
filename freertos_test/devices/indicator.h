@@ -46,5 +46,5 @@ struct indicator{
 #define IND_SPI_BUS_3_NUM	0
 
 uint8_t indicators_init(void);//
-
+void indicators_set_num(struct indicator *ind,float val);
 #endif

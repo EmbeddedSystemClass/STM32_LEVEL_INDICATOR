@@ -77,7 +77,7 @@
       <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b">
          <include file="..\..\..\stm_lib\inc\misc.h"/>
       </source>
-      <source file="..\..\..\devices\spi_bus.c" lastModified="14462fd932f">
+      <source file="..\..\..\devices\spi_bus.c" lastModified="14463c8b561">
          <include file="..\..\..\devices\spi_bus.h"/>
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
@@ -119,12 +119,16 @@
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\include\mpu_wrappers.h" lastModified="14453fe0893">
       </source>
+      <source file="..\..\..\stdio\printf.c" lastModified="14463ecbc09">
+      </source>
       <source file="..\..\..\stm_lib\inc\misc.h" lastModified="144540a660b">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\list.c" lastModified="14453fe0c9b">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\list.h"/>
+      </source>
+      <source file="..\..\..\syscalls\syscalls.c" lastModified="14463c75833">
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h" lastModified="14453fe08a3">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\portable.h"/>
@@ -262,19 +266,23 @@
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
       </source>
+      <source file="..\..\..\devices\indicator.h" lastModified="14463d61025">
+         <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
+      </source>
       <source file="..\..\..\devices\tablo.h" lastModified="14462f1c749">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\devices\spi_bus.h"/>
          <include file="..\..\..\devices\buzzer.h"/>
-      </source>
-      <source file="..\..\..\devices\indicator.h" lastModified="14462b4a320">
-         <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\tasks.c" lastModified="14453fe147a">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\timers.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\StackMacros.h"/>
+      </source>
+      <source file="..\..\..\devices\indicator.c" lastModified="1446418a3e8">
+         <include file="..\..\..\devices\indicator.h"/>
+         <include file="..\..\..\devices\tablo.h"/>
       </source>
       <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a">
          <include file="..\..\..\devices\tablo.h"/>

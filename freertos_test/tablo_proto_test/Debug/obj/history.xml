@@ -45,6 +45,9 @@
       <target file="croutine.o" lastModified="144540fbe83">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\croutine.c" lastModified="13438131cf3"/>
       </target>
+      <target file="printf.o" lastModified="144640001e0">
+         <source file="..\..\..\stdio\printf.c" lastModified="14463ecb439"/>
+      </target>
       <target file="misc.o" lastModified="144540fc048">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
       </target>
@@ -57,14 +60,14 @@
       <target file="stm32f10x_flash.o" lastModified="144540fbbd3">
          <source file="..\..\..\stm_lib\src\stm32f10x_flash.c" lastModified="144540a2827"/>
       </target>
-      <target file="tablo.o" lastModified="14462fd9b1e">
+      <target file="tablo.o" lastModified="14463d6333d">
          <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
       <target file="list.o" lastModified="144540fbb18">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\list.c" lastModified="14453fe08b3"/>
       </target>
-      <target file="indicator.o" lastModified="144631b3444">
-         <source file="..\..\..\devices\indicator.c" lastModified="144631b29f4"/>
+      <target file="indicator.o" lastModified="1446418b6d3">
+         <source file="..\..\..\devices\indicator.c" lastModified="14464189c18"/>
       </target>
       <target file="port.o" lastModified="144540fbc70">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12"/>
@@ -78,14 +81,17 @@
       <target file="system_stm32f10x.o" lastModified="144540fb1e1">
          <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="14454095ab5"/>
       </target>
+      <target file="syscalls.o" lastModified="14463c75b30">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="14463c74893"/>
+      </target>
       <target file="stm32f10x_adc.o" lastModified="144540fb9df">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
       <target file="stm32f10x_tim.o" lastModified="144540fabb6">
          <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="144540a3b71"/>
       </target>
-      <target file="spi_bus.o" lastModified="14462fd9c47">
-         <source file="..\..\..\devices\spi_bus.c" lastModified="14462fd932f"/>
+      <target file="spi_bus.o" lastModified="14463d633ca">
+         <source file="..\..\..\devices\spi_bus.c" lastModified="14463c8b561"/>
       </target>
       <target file="heap_1.o" lastModified="144540fc25b">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>
@@ -96,7 +102,7 @@
       <target file="startup_stm32f10x_md_vl.o" lastModified="144540fad6c">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md_vl.c" lastModified="1445409599c"/>
       </target>
-      <target file="main.o" lastModified="14462fd9ac0">
+      <target file="main.o" lastModified="14463d632d0">
          <source file="..\..\..\main.c" lastModified="14462f4b2d8"/>
       </target>
    </processor>
