@@ -54,7 +54,7 @@ void indicators_set_num(struct indicator *ind,float val)
 			{
 				val=9999;
 			}
-			sprintf(str,"%4u",(unsigned int)val);
+			sprintf(str,"%4d",(unsigned int)val);
 		}
 		break;
 
@@ -69,7 +69,7 @@ void indicators_set_num(struct indicator *ind,float val)
 			{
 				val=999.9;
 			}
-			sprintf(str,"%d.%d",(unsigned int)val,(unsigned int)(val*10)%10);
+			sprintf(str,"%3d.%1d",(unsigned int)val,(unsigned int)(val*10)%10);
 		}
 		break;
 
@@ -84,7 +84,7 @@ void indicators_set_num(struct indicator *ind,float val)
 			{
 				val=99.99;
 			}
-			sprintf(str,"%d.%d",(unsigned int)val,(unsigned int)(val*100)%100);
+			sprintf(str,"%2d.%2d",(unsigned int)val,(unsigned int)(val*100)%100);
 		}
 		break;
 
@@ -99,7 +99,7 @@ void indicators_set_num(struct indicator *ind,float val)
 			{
 				val=9.999;
 			}
-			sprintf(str,"%d.%d",(unsigned int)val,(unsigned int)(val*1000)%1000);
+			sprintf(str,"%1d.%3d",(unsigned int)val,(unsigned int)(val*1000)%1000);
 		}
 		break;
 

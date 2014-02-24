@@ -66,8 +66,8 @@
       <target file="list.o" lastModified="144540fbb18">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\list.c" lastModified="14453fe08b3"/>
       </target>
-      <target file="indicator.o" lastModified="1446418b6d3">
-         <source file="..\..\..\devices\indicator.c" lastModified="14464189c18"/>
+      <target file="indicator.o" lastModified="1446426c873">
+         <source file="..\..\..\devices\indicator.c" lastModified="1446426b912"/>
       </target>
       <target file="port.o" lastModified="144540fbc70">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12"/>
@@ -90,8 +90,8 @@
       <target file="stm32f10x_tim.o" lastModified="144540fabb6">
          <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="144540a3b71"/>
       </target>
-      <target file="spi_bus.o" lastModified="14463d633ca">
-         <source file="..\..\..\devices\spi_bus.c" lastModified="14463c8b561"/>
+      <target file="spi_bus.o" lastModified="1446429d99b">
+         <source file="..\..\..\devices\spi_bus.c" lastModified="1446429cbff"/>
       </target>
       <target file="heap_1.o" lastModified="144540fc25b">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>

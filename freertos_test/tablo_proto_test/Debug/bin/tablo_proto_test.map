@@ -779,7 +779,7 @@ Linker script and memory map
 
                 0x20002000                _eram = 0x20002000
 
-.text           0x08000000     0x4000
+.text           0x08000000     0x4010
  *(.isr_vector .isr_vector.*)
  .isr_vector    0x08000000      0x124 ..\obj\startup_stm32f10x_md_vl.o
                 0x08000000                g_pfnVectors
@@ -1127,16 +1127,16 @@ Linker script and memory map
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.rodata .rodata* .gnu.linkonce.r.*)
- .rodata        0x08003f98       0x4c ..\obj\indicator.o
+ .rodata        0x08003f98       0x5c ..\obj\indicator.o
                 0x08003f98                Sym_table
- .rodata        0x08003fe4        0x8 ..\obj\main.o
- .rodata        0x08003fec        0x8 ..\obj\tasks.o
- .rodata        0x08003ff4        0xc ..\obj\spi_bus.o
+ .rodata        0x08003ff4        0x8 ..\obj\main.o
+ .rodata        0x08003ffc        0x8 ..\obj\tasks.o
+ .rodata        0x08004004        0xc ..\obj\spi_bus.o
 
-.vfp11_veneer   0x08004000        0x0
+.vfp11_veneer   0x08004010        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08004000        0x0
+.v4_bx          0x08004010        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.extab
@@ -1144,11 +1144,11 @@ Linker script and memory map
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08004000                . = ALIGN (0x4)
-                0x08004000                _etext = .
-                0x08004000                _sidata = .
+                0x08004010                . = ALIGN (0x4)
+                0x08004010                _etext = .
+                0x08004010                _sidata = .
 
-.data           0x20000000        0x8 load address 0x08004000
+.data           0x20000000        0x8 load address 0x08004010
                 0x20000000                _sdata = .
  *(.data .data.*)
  .data          0x20000000        0x4 ..\obj\tasks.o
@@ -1156,7 +1156,7 @@ Linker script and memory map
                 0x20000008                . = ALIGN (0x4)
                 0x20000008                _edata = .
 
-.bss            0x20000008      0xec4 load address 0x08004008
+.bss            0x20000008      0xec4 load address 0x08004018
                 0x20000008                _sbss = .
  *(.bss .bss.*)
  .bss           0x20000008      0x100 ..\obj\tasks.o
@@ -1171,7 +1171,7 @@ Linker script and memory map
                 0x20000ecc                . = ALIGN (0x4)
                 0x20000ecc                _ebss = .
 
-.co_stack       0x20000ecc      0x404 load address 0x08004ecc
+.co_stack       0x20000ecc      0x404 load address 0x08004edc
                 0x20000ed0                . = ALIGN (0x8)
  *fill*         0x20000ecc        0x4 00
  *(.co_stack .co_stack.*)
