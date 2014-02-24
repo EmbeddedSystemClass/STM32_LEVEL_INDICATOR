@@ -57,14 +57,14 @@
       <target file="stm32f10x_flash.o" lastModified="144540fbbd3">
          <source file="..\..\..\stm_lib\src\stm32f10x_flash.c" lastModified="144540a2827"/>
       </target>
-      <target file="tablo.o" lastModified="144541fd152">
-         <source file="..\..\..\devices\tablo.c" lastModified="144541fadfb"/>
+      <target file="tablo.o" lastModified="14462fd9b1e">
+         <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
       <target file="list.o" lastModified="144540fbb18">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\list.c" lastModified="14453fe08b3"/>
       </target>
-      <target file="indicator.o" lastModified="144541fcfdb">
-         <source file="..\..\..\devices\indicator.c" lastModified="14453fe08f1"/>
+      <target file="indicator.o" lastModified="144631b3444">
+         <source file="..\..\..\devices\indicator.c" lastModified="144631b29f4"/>
       </target>
       <target file="port.o" lastModified="144540fbc70">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12"/>
@@ -84,8 +84,8 @@
       <target file="stm32f10x_tim.o" lastModified="144540fabb6">
          <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="144540a3b71"/>
       </target>
-      <target file="spi_bus.o" lastModified="144542e2895">
-         <source file="..\..\..\devices\spi_bus.c" lastModified="144542e20d5"/>
+      <target file="spi_bus.o" lastModified="14462fd9c47">
+         <source file="..\..\..\devices\spi_bus.c" lastModified="14462fd932f"/>
       </target>
       <target file="heap_1.o" lastModified="144540fc25b">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>
@@ -96,8 +96,8 @@
       <target file="startup_stm32f10x_md_vl.o" lastModified="144540fad6c">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md_vl.c" lastModified="1445409599c"/>
       </target>
-      <target file="main.o" lastModified="144541fd0c5">
-         <source file="..\..\..\main.c" lastModified="144541fc57a"/>
+      <target file="main.o" lastModified="14462fd9ac0">
+         <source file="..\..\..\main.c" lastModified="14462f4b2d8"/>
       </target>
    </processor>
 </history>
