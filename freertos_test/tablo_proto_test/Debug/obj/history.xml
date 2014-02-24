@@ -18,11 +18,11 @@
       <target file="buzzer.o" lastModified="144540fae76">
          <source file="..\..\..\devices\buzzer.c" lastModified="14453fe08e2"/>
       </target>
-      <target file="channels.o" lastModified="144540fbf00">
-         <source file="..\..\..\protocols\channels.c" lastModified="14453fe0910"/>
-      </target>
       <target file="tasks.o" lastModified="144540fb914">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\tasks.c" lastModified="14453fe08c2"/>
+      </target>
+      <target file="channels.o" lastModified="144540fbf00">
+         <source file="..\..\..\protocols\channels.c" lastModified="14453fe0910"/>
       </target>
       <target file="tablo_parser.o" lastModified="144540fad0e">
          <source file="..\..\..\protocols\tablo_parser.c" lastModified="14453fe0920"/>
@@ -60,23 +60,23 @@
       <target file="stm32f10x_flash.o" lastModified="144540fbbd3">
          <source file="..\..\..\stm_lib\src\stm32f10x_flash.c" lastModified="144540a2827"/>
       </target>
-      <target file="tablo.o" lastModified="14463d6333d">
+      <target file="tablo.o" lastModified="144642e6b87">
          <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
       <target file="list.o" lastModified="144540fbb18">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\list.c" lastModified="14453fe08b3"/>
       </target>
-      <target file="indicator.o" lastModified="1446426c873">
-         <source file="..\..\..\devices\indicator.c" lastModified="1446426b912"/>
+      <target file="indicator.o" lastModified="144642e9d94">
+         <source file="..\..\..\devices\indicator.c" lastModified="144642e90b3"/>
       </target>
       <target file="port.o" lastModified="144540fbc70">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12"/>
       </target>
-      <target file="timers.o" lastModified="144540fb655">
-         <source file="..\..\..\FreeRTOSV7.1.0\Source\timers.c" lastModified="14453fe08c2"/>
-      </target>
       <target file="stm32f10x_gpio.o" lastModified="144540fb338">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
+      </target>
+      <target file="timers.o" lastModified="144540fb655">
+         <source file="..\..\..\FreeRTOSV7.1.0\Source\timers.c" lastModified="14453fe08c2"/>
       </target>
       <target file="system_stm32f10x.o" lastModified="144540fb1e1">
          <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="14454095ab5"/>
@@ -84,25 +84,25 @@
       <target file="syscalls.o" lastModified="14463c75b30">
          <source file="..\..\..\syscalls\syscalls.c" lastModified="14463c74893"/>
       </target>
-      <target file="stm32f10x_adc.o" lastModified="144540fb9df">
-         <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
-      </target>
       <target file="stm32f10x_tim.o" lastModified="144540fabb6">
          <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="144540a3b71"/>
       </target>
-      <target file="spi_bus.o" lastModified="1446429d99b">
-         <source file="..\..\..\devices\spi_bus.c" lastModified="1446429cbff"/>
+      <target file="stm32f10x_adc.o" lastModified="144540fb9df">
+         <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
-      <target file="heap_1.o" lastModified="144540fc25b">
-         <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>
+      <target file="spi_bus.o" lastModified="144642ef161">
+         <source file="..\..\..\devices\spi_bus.c" lastModified="144642ee8b6"/>
       </target>
       <target file="stm32f10x_dma.o" lastModified="144540fbdd7">
          <source file="..\..\..\stm_lib\src\stm32f10x_dma.c" lastModified="1445409b7ba"/>
       </target>
+      <target file="heap_1.o" lastModified="144540fc25b">
+         <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>
+      </target>
       <target file="startup_stm32f10x_md_vl.o" lastModified="144540fad6c">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md_vl.c" lastModified="1445409599c"/>
       </target>
-      <target file="main.o" lastModified="14463d632d0">
+      <target file="main.o" lastModified="144642e6afa">
          <source file="..\..\..\main.c" lastModified="14462f4b2d8"/>
       </target>
    </processor>

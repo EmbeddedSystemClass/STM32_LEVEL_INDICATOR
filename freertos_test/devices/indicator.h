@@ -47,4 +47,5 @@ struct indicator{
 
 uint8_t indicators_init(void);//
 void indicators_set_num(struct indicator *ind,float val);
+uint8_t str_to_ind(struct indicator *ind,uint8_t *str);
 #endif

@@ -779,7 +779,7 @@ Linker script and memory map
 
                 0x20002000                _eram = 0x20002000
 
-.text           0x08000000     0x4010
+.text           0x08000000     0x4014
  *(.isr_vector .isr_vector.*)
  .isr_vector    0x08000000      0x124 ..\obj\startup_stm32f10x_md_vl.o
                 0x08000000                g_pfnVectors
@@ -852,291 +852,294 @@ Linker script and memory map
                 0x0800057c                GPIO_WriteBit
  *fill*         0x080005ac        0x4 00
  .text.indicators_set_num
-                0x080005b0      0x858 ..\obj\indicator.o
+                0x080005b0      0x2d0 ..\obj\indicator.o
                 0x080005b0                indicators_set_num
+ .text.str_to_ind
+                0x08000880      0x58c ..\obj\indicator.o
+                0x08000880                str_to_ind
  .text.Init_Task
-                0x08000e08       0x20 ..\obj\main.o
- .text.main     0x08000e28       0x48 ..\obj\main.o
-                0x08000e28                main
+                0x08000e0c       0x20 ..\obj\main.o
+ .text.main     0x08000e2c       0x48 ..\obj\main.o
+                0x08000e2c                main
  .text.tablo_indicator_struct_init
-                0x08000e70       0xac ..\obj\tablo.o
-                0x08000e70                tablo_indicator_struct_init
+                0x08000e74       0xac ..\obj\tablo.o
+                0x08000e74                tablo_indicator_struct_init
  .text.tablo_devices_init
-                0x08000f1c       0x20 ..\obj\tablo.o
-                0x08000f1c                tablo_devices_init
- .text.PutChar  0x08000f3c       0x24 ..\obj\printf.o
-                0x08000f3c                PutChar
+                0x08000f20       0x20 ..\obj\tablo.o
+                0x08000f20                tablo_devices_init
+ .text.PutChar  0x08000f40       0x24 ..\obj\printf.o
+                0x08000f40                PutChar
  .text.PutString
-                0x08000f60       0x48 ..\obj\printf.o
-                0x08000f60                PutString
+                0x08000f64       0x48 ..\obj\printf.o
+                0x08000f64                PutString
  .text.PutUnsignedInt
-                0x08000fa8       0xbc ..\obj\printf.o
-                0x08000fa8                PutUnsignedInt
+                0x08000fac       0xbc ..\obj\printf.o
+                0x08000fac                PutUnsignedInt
  .text.PutSignedInt
-                0x08001064      0x12c ..\obj\printf.o
-                0x08001064                PutSignedInt
- .text.PutHexa  0x08001190       0xe8 ..\obj\printf.o
-                0x08001190                PutHexa
+                0x08001068      0x12c ..\obj\printf.o
+                0x08001068                PutSignedInt
+ .text.PutHexa  0x08001194       0xe8 ..\obj\printf.o
+                0x08001194                PutHexa
  .text.vsnprintf
-                0x08001278      0x2a4 ..\obj\printf.o
-                0x08001278                vsnprintf
+                0x0800127c      0x2a4 ..\obj\printf.o
+                0x0800127c                vsnprintf
  .text.vsprintf
-                0x0800151c       0x28 ..\obj\printf.o
-                0x0800151c                vsprintf
- .text.sprintf  0x08001544       0x30 ..\obj\printf.o
-                0x08001544                sprintf
+                0x08001520       0x28 ..\obj\printf.o
+                0x08001520                vsprintf
+ .text.sprintf  0x08001548       0x30 ..\obj\printf.o
+                0x08001548                sprintf
  .text.RCC_AHBPeriphClockCmd
-                0x08001574       0x5c ..\obj\stm32f10x_rcc.o
-                0x08001574                RCC_AHBPeriphClockCmd
+                0x08001578       0x5c ..\obj\stm32f10x_rcc.o
+                0x08001578                RCC_AHBPeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x080015d0       0x5c ..\obj\stm32f10x_rcc.o
-                0x080015d0                RCC_APB2PeriphClockCmd
+                0x080015d4       0x5c ..\obj\stm32f10x_rcc.o
+                0x080015d4                RCC_APB2PeriphClockCmd
  .text.xTaskGenericCreate
-                0x0800162c      0x1ac ..\obj\tasks.o
-                0x0800162c                xTaskGenericCreate
+                0x08001630      0x1ac ..\obj\tasks.o
+                0x08001630                xTaskGenericCreate
  .text.vTaskDelete
-                0x080017d8       0xc0 ..\obj\tasks.o
-                0x080017d8                vTaskDelete
+                0x080017dc       0xc0 ..\obj\tasks.o
+                0x080017dc                vTaskDelete
  .text.vTaskDelay
-                0x08001898       0x5c ..\obj\tasks.o
-                0x08001898                vTaskDelay
+                0x0800189c       0x5c ..\obj\tasks.o
+                0x0800189c                vTaskDelay
  .text.vTaskStartScheduler
-                0x080018f4       0x74 ..\obj\tasks.o
-                0x080018f4                vTaskStartScheduler
+                0x080018f8       0x74 ..\obj\tasks.o
+                0x080018f8                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x08001968       0x24 ..\obj\tasks.o
-                0x08001968                vTaskSuspendAll
+                0x0800196c       0x24 ..\obj\tasks.o
+                0x0800196c                vTaskSuspendAll
  .text.xTaskResumeAll
-                0x0800198c      0x154 ..\obj\tasks.o
-                0x0800198c                xTaskResumeAll
+                0x08001990      0x154 ..\obj\tasks.o
+                0x08001990                xTaskResumeAll
  .text.vTaskIncrementTick
-                0x08001ae0      0x1b8 ..\obj\tasks.o
-                0x08001ae0                vTaskIncrementTick
+                0x08001ae4      0x1b8 ..\obj\tasks.o
+                0x08001ae4                vTaskIncrementTick
  .text.vTaskSwitchContext
-                0x08001c98       0xd0 ..\obj\tasks.o
-                0x08001c98                vTaskSwitchContext
+                0x08001c9c       0xd0 ..\obj\tasks.o
+                0x08001c9c                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x08001d68       0x78 ..\obj\tasks.o
-                0x08001d68                vTaskPlaceOnEventList
+                0x08001d6c       0x78 ..\obj\tasks.o
+                0x08001d6c                vTaskPlaceOnEventList
  .text.xTaskRemoveFromEventList
-                0x08001de0       0xc4 ..\obj\tasks.o
-                0x08001de0                xTaskRemoveFromEventList
+                0x08001de4       0xc4 ..\obj\tasks.o
+                0x08001de4                xTaskRemoveFromEventList
  .text.vTaskSetTimeOutState
-                0x08001ea4       0x30 ..\obj\tasks.o
-                0x08001ea4                vTaskSetTimeOutState
+                0x08001ea8       0x30 ..\obj\tasks.o
+                0x08001ea8                vTaskSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x08001ed4       0xa4 ..\obj\tasks.o
-                0x08001ed4                xTaskCheckForTimeOut
+                0x08001ed8       0xa4 ..\obj\tasks.o
+                0x08001ed8                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x08001f78       0x18 ..\obj\tasks.o
-                0x08001f78                vTaskMissedYield
+                0x08001f7c       0x18 ..\obj\tasks.o
+                0x08001f7c                vTaskMissedYield
  .text.prvIdleTask
-                0x08001f90       0x24 ..\obj\tasks.o
+                0x08001f94       0x24 ..\obj\tasks.o
  .text.prvInitialiseTCBVariables
-                0x08001fb4       0x7c ..\obj\tasks.o
+                0x08001fb8       0x7c ..\obj\tasks.o
  .text.prvInitialiseTaskLists
-                0x08002030       0xa4 ..\obj\tasks.o
+                0x08002034       0xa4 ..\obj\tasks.o
  .text.prvCheckTasksWaitingTermination
-                0x080020d4       0x98 ..\obj\tasks.o
+                0x080020d8       0x98 ..\obj\tasks.o
  .text.prvAddCurrentTaskToDelayedList
-                0x0800216c       0x8c ..\obj\tasks.o
+                0x08002170       0x8c ..\obj\tasks.o
  .text.prvAllocateTCBAndStack
-                0x080021f8       0x74 ..\obj\tasks.o
+                0x080021fc       0x74 ..\obj\tasks.o
  .text.prvDeleteTCB
-                0x0800226c       0x20 ..\obj\tasks.o
+                0x08002270       0x20 ..\obj\tasks.o
  .text.xTaskGetCurrentTaskHandle
-                0x0800228c       0x20 ..\obj\tasks.o
-                0x0800228c                xTaskGetCurrentTaskHandle
+                0x08002290       0x20 ..\obj\tasks.o
+                0x08002290                xTaskGetCurrentTaskHandle
  .text.vTaskPriorityInherit
-                0x080022ac       0xd8 ..\obj\tasks.o
-                0x080022ac                vTaskPriorityInherit
+                0x080022b0       0xd8 ..\obj\tasks.o
+                0x080022b0                vTaskPriorityInherit
  .text.vTaskPriorityDisinherit
-                0x08002384       0x90 ..\obj\tasks.o
-                0x08002384                vTaskPriorityDisinherit
+                0x08002388       0x90 ..\obj\tasks.o
+                0x08002388                vTaskPriorityDisinherit
  .text.vListInitialise
-                0x08002414       0x48 ..\obj\list.o
-                0x08002414                vListInitialise
+                0x08002418       0x48 ..\obj\list.o
+                0x08002418                vListInitialise
  .text.vListInitialiseItem
-                0x0800245c       0x1c ..\obj\list.o
-                0x0800245c                vListInitialiseItem
+                0x08002460       0x1c ..\obj\list.o
+                0x08002460                vListInitialiseItem
  .text.vListInsertEnd
-                0x08002478       0x54 ..\obj\list.o
-                0x08002478                vListInsertEnd
+                0x0800247c       0x54 ..\obj\list.o
+                0x0800247c                vListInsertEnd
  .text.vListInsert
-                0x080024cc       0x78 ..\obj\list.o
-                0x080024cc                vListInsert
+                0x080024d0       0x78 ..\obj\list.o
+                0x080024d0                vListInsert
  .text.vListRemove
-                0x08002544       0x54 ..\obj\list.o
-                0x08002544                vListRemove
+                0x08002548       0x54 ..\obj\list.o
+                0x08002548                vListRemove
  .text.pxPortInitialiseStack
-                0x08002598       0x60 ..\obj\port.o
-                0x08002598                pxPortInitialiseStack
+                0x0800259c       0x60 ..\obj\port.o
+                0x0800259c                pxPortInitialiseStack
  .text.SVC_Handler
-                0x080025f8       0x20 ..\obj\port.o
-                0x080025f8                SVC_Handler
+                0x080025fc       0x20 ..\obj\port.o
+                0x080025fc                SVC_Handler
  .text.vPortStartFirstTask
-                0x08002618       0x14 ..\obj\port.o
-                0x08002618                vPortStartFirstTask
+                0x0800261c       0x14 ..\obj\port.o
+                0x0800261c                vPortStartFirstTask
  .text.xPortStartScheduler
-                0x0800262c       0x54 ..\obj\port.o
-                0x0800262c                xPortStartScheduler
+                0x08002630       0x54 ..\obj\port.o
+                0x08002630                xPortStartScheduler
  .text.vPortYieldFromISR
-                0x08002680       0x18 ..\obj\port.o
-                0x08002680                vPortYieldFromISR
+                0x08002684       0x18 ..\obj\port.o
+                0x08002684                vPortYieldFromISR
  .text.vPortEnterCritical
-                0x08002698       0x2c ..\obj\port.o
-                0x08002698                vPortEnterCritical
+                0x0800269c       0x2c ..\obj\port.o
+                0x0800269c                vPortEnterCritical
  .text.vPortExitCritical
-                0x080026c4       0x38 ..\obj\port.o
-                0x080026c4                vPortExitCritical
+                0x080026c8       0x38 ..\obj\port.o
+                0x080026c8                vPortExitCritical
  .text.PendSV_Handler
-                0x080026fc       0x3c ..\obj\port.o
-                0x080026fc                PendSV_Handler
+                0x08002700       0x3c ..\obj\port.o
+                0x08002700                PendSV_Handler
  .text.SysTick_Handler
-                0x08002738       0x38 ..\obj\port.o
-                0x08002738                SysTick_Handler
+                0x0800273c       0x38 ..\obj\port.o
+                0x0800273c                SysTick_Handler
  .text.prvSetupTimerInterrupt
-                0x08002770       0x28 ..\obj\port.o
+                0x08002774       0x28 ..\obj\port.o
  .text.xQueueCreateMutex
-                0x08002798       0x9c ..\obj\queue.o
-                0x08002798                xQueueCreateMutex
+                0x0800279c       0x9c ..\obj\queue.o
+                0x0800279c                xQueueCreateMutex
  .text.xQueueGenericSend
-                0x08002834      0x124 ..\obj\queue.o
-                0x08002834                xQueueGenericSend
+                0x08002838      0x124 ..\obj\queue.o
+                0x08002838                xQueueGenericSend
  .text.xQueueGenericReceive
-                0x08002958      0x188 ..\obj\queue.o
-                0x08002958                xQueueGenericReceive
+                0x0800295c      0x188 ..\obj\queue.o
+                0x0800295c                xQueueGenericReceive
  .text.prvCopyDataToQueue
-                0x08002ae0       0xc4 ..\obj\queue.o
+                0x08002ae4       0xc4 ..\obj\queue.o
  .text.prvCopyDataFromQueue
-                0x08002ba4       0x50 ..\obj\queue.o
+                0x08002ba8       0x50 ..\obj\queue.o
  .text.prvUnlockQueue
-                0x08002bf4       0xa0 ..\obj\queue.o
+                0x08002bf8       0xa0 ..\obj\queue.o
  .text.prvIsQueueEmpty
-                0x08002c94       0x2c ..\obj\queue.o
+                0x08002c98       0x2c ..\obj\queue.o
  .text.prvIsQueueFull
-                0x08002cc0       0x30 ..\obj\queue.o
+                0x08002cc4       0x30 ..\obj\queue.o
  .text.DMA_Init
-                0x08002cf0       0x84 ..\obj\stm32f10x_dma.o
-                0x08002cf0                DMA_Init
+                0x08002cf4       0x84 ..\obj\stm32f10x_dma.o
+                0x08002cf4                DMA_Init
  .text.DMA_StructInit
-                0x08002d74       0x6c ..\obj\stm32f10x_dma.o
-                0x08002d74                DMA_StructInit
- .text.DMA_Cmd  0x08002de0       0x3c ..\obj\stm32f10x_dma.o
-                0x08002de0                DMA_Cmd
+                0x08002d78       0x6c ..\obj\stm32f10x_dma.o
+                0x08002d78                DMA_StructInit
+ .text.DMA_Cmd  0x08002de4       0x3c ..\obj\stm32f10x_dma.o
+                0x08002de4                DMA_Cmd
  .text.DMA_GetFlagStatus
-                0x08002e1c       0x60 ..\obj\stm32f10x_dma.o
-                0x08002e1c                DMA_GetFlagStatus
+                0x08002e20       0x60 ..\obj\stm32f10x_dma.o
+                0x08002e20                DMA_GetFlagStatus
  .text.DMA_ClearFlag
-                0x08002e7c       0x38 ..\obj\stm32f10x_dma.o
-                0x08002e7c                DMA_ClearFlag
+                0x08002e80       0x38 ..\obj\stm32f10x_dma.o
+                0x08002e80                DMA_ClearFlag
  .text.spi_buses_init
-                0x08002eb4       0x84 ..\obj\spi_bus.o
-                0x08002eb4                spi_buses_init
+                0x08002eb8       0x84 ..\obj\spi_bus.o
+                0x08002eb8                spi_buses_init
  .text.spi1_config
-                0x08002f38      0x1e0 ..\obj\spi_bus.o
-                0x08002f38                spi1_config
+                0x08002f3c      0x1e0 ..\obj\spi_bus.o
+                0x08002f3c                spi1_config
  .text.spi1_write_buf
-                0x08003118       0x44 ..\obj\spi_bus.o
-                0x08003118                spi1_write_buf
+                0x0800311c       0x44 ..\obj\spi_bus.o
+                0x0800311c                spi1_write_buf
  .text.spi1_task
-                0x0800315c      0x100 ..\obj\spi_bus.o
+                0x08003160      0x100 ..\obj\spi_bus.o
  .text.SPI_Init
-                0x0800325c       0x98 ..\obj\stm32f10x_spi.o
-                0x0800325c                SPI_Init
- .text.SPI_Cmd  0x080032f4       0x40 ..\obj\stm32f10x_spi.o
-                0x080032f4                SPI_Cmd
+                0x08003260       0x98 ..\obj\stm32f10x_spi.o
+                0x08003260                SPI_Init
+ .text.SPI_Cmd  0x080032f8       0x40 ..\obj\stm32f10x_spi.o
+                0x080032f8                SPI_Cmd
  .text.SPI_I2S_DMACmd
-                0x08003334       0x4c ..\obj\stm32f10x_spi.o
-                0x08003334                SPI_I2S_DMACmd
+                0x08003338       0x4c ..\obj\stm32f10x_spi.o
+                0x08003338                SPI_I2S_DMACmd
  .text.SPI_CalculateCRC
-                0x08003380       0x40 ..\obj\stm32f10x_spi.o
-                0x08003380                SPI_CalculateCRC
+                0x08003384       0x40 ..\obj\stm32f10x_spi.o
+                0x08003384                SPI_CalculateCRC
  .text.pvPortMalloc
-                0x080033c0       0x98 ..\obj\heap_1.o
-                0x080033c0                pvPortMalloc
+                0x080033c4       0x98 ..\obj\heap_1.o
+                0x080033c4                pvPortMalloc
  .text.vPortFree
-                0x08003458       0x14 ..\obj\heap_1.o
-                0x08003458                vPortFree
- .text          0x0800346c      0x370 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubdf3.o)
-                0x0800346c                __aeabi_drsub
-                0x08003474                __aeabi_dsub
-                0x08003474                __subdf3
-                0x08003478                __aeabi_dadd
-                0x08003478                __adddf3
-                0x080036f0                __floatunsidf
-                0x080036f0                __aeabi_ui2d
-                0x08003710                __floatsidf
-                0x08003710                __aeabi_i2d
-                0x08003734                __aeabi_f2d
-                0x08003734                __extendsfdf2
-                0x08003770                __floatundidf
-                0x08003770                __aeabi_ul2d
-                0x08003780                __floatdidf
-                0x08003780                __aeabi_l2d
- .text          0x080037dc      0x110 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_cmpdf2.o)
-                0x080037dc                __gtdf2
-                0x080037dc                __gedf2
-                0x080037e4                __ltdf2
-                0x080037e4                __ledf2
-                0x080037ec                __nedf2
-                0x080037ec                __eqdf2
-                0x080037ec                __cmpdf2
-                0x08003868                __aeabi_cdrcmple
-                0x08003878                __aeabi_cdcmpeq
-                0x08003878                __aeabi_cdcmple
-                0x08003888                __aeabi_dcmpeq
-                0x0800389c                __aeabi_dcmplt
-                0x080038b0                __aeabi_dcmple
-                0x080038c4                __aeabi_dcmpge
-                0x080038d8                __aeabi_dcmpgt
- .text          0x080038ec      0x2a0 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
-                0x080038ec                __mulsf3
-                0x080038ec                __aeabi_fmul
-                0x08003a54                __aeabi_fdiv
-                0x08003a54                __divsf3
- .text          0x08003b8c       0xec c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_cmpsf2.o)
-                0x08003b8c                __gesf2
-                0x08003b8c                __gtsf2
-                0x08003b94                __lesf2
-                0x08003b94                __ltsf2
-                0x08003b9c                __nesf2
-                0x08003b9c                __eqsf2
-                0x08003b9c                __cmpsf2
-                0x08003bfc                __aeabi_cfrcmple
-                0x08003c04                __aeabi_cfcmpeq
-                0x08003c04                __aeabi_cfcmple
-                0x08003c14                __aeabi_fcmpeq
-                0x08003c28                __aeabi_fcmplt
-                0x08003c3c                __aeabi_fcmple
-                0x08003c50                __aeabi_fcmpge
-                0x08003c64                __aeabi_fcmpgt
- .text          0x08003c78       0x40 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_fixunssfsi.o)
-                0x08003c78                __fixunssfsi
-                0x08003c78                __aeabi_f2uiz
- .text          0x08003cb8      0x150 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
-                0x08003cb8                memcpy
- .text          0x08003e08       0xb4 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
-                0x08003e08                memset
- .text          0x08003ebc       0x60 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strlen.o)
-                0x08003ebc                strlen
- .text          0x08003f1c       0x7c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strncpy.o)
-                0x08003f1c                strncpy
+                0x0800345c       0x14 ..\obj\heap_1.o
+                0x0800345c                vPortFree
+ .text          0x08003470      0x370 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_addsubdf3.o)
+                0x08003470                __aeabi_drsub
+                0x08003478                __aeabi_dsub
+                0x08003478                __subdf3
+                0x0800347c                __aeabi_dadd
+                0x0800347c                __adddf3
+                0x080036f4                __floatunsidf
+                0x080036f4                __aeabi_ui2d
+                0x08003714                __floatsidf
+                0x08003714                __aeabi_i2d
+                0x08003738                __aeabi_f2d
+                0x08003738                __extendsfdf2
+                0x08003774                __floatundidf
+                0x08003774                __aeabi_ul2d
+                0x08003784                __floatdidf
+                0x08003784                __aeabi_l2d
+ .text          0x080037e0      0x110 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_cmpdf2.o)
+                0x080037e0                __gtdf2
+                0x080037e0                __gedf2
+                0x080037e8                __ltdf2
+                0x080037e8                __ledf2
+                0x080037f0                __nedf2
+                0x080037f0                __eqdf2
+                0x080037f0                __cmpdf2
+                0x0800386c                __aeabi_cdrcmple
+                0x0800387c                __aeabi_cdcmpeq
+                0x0800387c                __aeabi_cdcmple
+                0x0800388c                __aeabi_dcmpeq
+                0x080038a0                __aeabi_dcmplt
+                0x080038b4                __aeabi_dcmple
+                0x080038c8                __aeabi_dcmpge
+                0x080038dc                __aeabi_dcmpgt
+ .text          0x080038f0      0x2a0 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x080038f0                __mulsf3
+                0x080038f0                __aeabi_fmul
+                0x08003a58                __aeabi_fdiv
+                0x08003a58                __divsf3
+ .text          0x08003b90       0xec c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_cmpsf2.o)
+                0x08003b90                __gesf2
+                0x08003b90                __gtsf2
+                0x08003b98                __lesf2
+                0x08003b98                __ltsf2
+                0x08003ba0                __nesf2
+                0x08003ba0                __eqsf2
+                0x08003ba0                __cmpsf2
+                0x08003c00                __aeabi_cfrcmple
+                0x08003c08                __aeabi_cfcmpeq
+                0x08003c08                __aeabi_cfcmple
+                0x08003c18                __aeabi_fcmpeq
+                0x08003c2c                __aeabi_fcmplt
+                0x08003c40                __aeabi_fcmple
+                0x08003c54                __aeabi_fcmpge
+                0x08003c68                __aeabi_fcmpgt
+ .text          0x08003c7c       0x40 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                0x08003c7c                __fixunssfsi
+                0x08003c7c                __aeabi_f2uiz
+ .text          0x08003cbc      0x150 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
+                0x08003cbc                memcpy
+ .text          0x08003e0c       0xb4 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
+                0x08003e0c                memset
+ .text          0x08003ec0       0x60 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strlen.o)
+                0x08003ec0                strlen
+ .text          0x08003f20       0x7c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strncpy.o)
+                0x08003f20                strncpy
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.rodata .rodata* .gnu.linkonce.r.*)
- .rodata        0x08003f98       0x5c ..\obj\indicator.o
-                0x08003f98                Sym_table
- .rodata        0x08003ff4        0x8 ..\obj\main.o
- .rodata        0x08003ffc        0x8 ..\obj\tasks.o
- .rodata        0x08004004        0xc ..\obj\spi_bus.o
+ .rodata        0x08003f9c       0x5c ..\obj\indicator.o
+                0x08003f9c                Sym_table
+ .rodata        0x08003ff8        0x8 ..\obj\main.o
+ .rodata        0x08004000        0x8 ..\obj\tasks.o
+ .rodata        0x08004008        0xc ..\obj\spi_bus.o
 
-.vfp11_veneer   0x08004010        0x0
+.vfp11_veneer   0x08004014        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08004010        0x0
+.v4_bx          0x08004014        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.extab
@@ -1144,11 +1147,11 @@ Linker script and memory map
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08004010                . = ALIGN (0x4)
-                0x08004010                _etext = .
-                0x08004010                _sidata = .
+                0x08004014                . = ALIGN (0x4)
+                0x08004014                _etext = .
+                0x08004014                _sidata = .
 
-.data           0x20000000        0x8 load address 0x08004010
+.data           0x20000000        0x8 load address 0x08004014
                 0x20000000                _sdata = .
  *(.data .data.*)
  .data          0x20000000        0x4 ..\obj\tasks.o
@@ -1156,7 +1159,7 @@ Linker script and memory map
                 0x20000008                . = ALIGN (0x4)
                 0x20000008                _edata = .
 
-.bss            0x20000008      0xec4 load address 0x08004018
+.bss            0x20000008      0xec4 load address 0x0800401c
                 0x20000008                _sbss = .
  *(.bss .bss.*)
  .bss           0x20000008      0x100 ..\obj\tasks.o
@@ -1171,7 +1174,7 @@ Linker script and memory map
                 0x20000ecc                . = ALIGN (0x4)
                 0x20000ecc                _ebss = .
 
-.co_stack       0x20000ecc      0x404 load address 0x08004edc
+.co_stack       0x20000ecc      0x404 load address 0x08004ee0
                 0x20000ed0                . = ALIGN (0x8)
  *fill*         0x20000ecc        0x4 00
  *(.co_stack .co_stack.*)
@@ -1243,7 +1246,7 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_abbrev  0x0000202a      0x15d ..\obj\stm32f10x_spi.o
  .debug_abbrev  0x00002187      0x10d ..\obj\heap_1.o
 
-.debug_info     0x00000000     0xb27e
+.debug_info     0x00000000     0xb2be
  .debug_info    0x00000000     0x1e18 ..\obj\stm32f10x_tim.o
  .debug_info    0x00001e18      0x143 ..\obj\startup_stm32f10x_md_vl.o
  .debug_info    0x00001f5b      0x548 ..\obj\core_cm3.o
@@ -1251,29 +1254,29 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_info    0x000028d6      0x45b ..\obj\stm32f10x_pwr.o
  .debug_info    0x00002d31      0x723 ..\obj\stm32f10x_gpio.o
  .debug_info    0x00003454      0x671 ..\obj\stm32f10x_dac.o
- .debug_info    0x00003ac5      0x36c ..\obj\indicator.o
- .debug_info    0x00003e31       0xef ..\obj\main.o
- .debug_info    0x00003f20       0x89 ..\obj\timers.o
- .debug_info    0x00003fa9      0x2a7 ..\obj\tablo.o
- .debug_info    0x00004250      0xed2 ..\obj\printf.o
- .debug_info    0x00005122      0x976 ..\obj\stm32f10x_rcc.o
- .debug_info    0x00005a98      0xc80 ..\obj\tasks.o
- .debug_info    0x00006718      0xc0e ..\obj\stm32f10x_adc.o
- .debug_info    0x00007326      0x25f ..\obj\keyboard.o
- .debug_info    0x00007585      0x2cb ..\obj\list.o
- .debug_info    0x00007850      0x440 ..\obj\syscalls.o
- .debug_info    0x00007c90      0x819 ..\obj\stm32f10x_flash.o
- .debug_info    0x000084a9      0x214 ..\obj\port.o
- .debug_info    0x000086bd      0x7a4 ..\obj\queue.o
- .debug_info    0x00008e61      0x4a2 ..\obj\stm32f10x_dma.o
- .debug_info    0x00009303      0x4ec ..\obj\croutine.o
- .debug_info    0x000097ef      0x290 ..\obj\channels.o
- .debug_info    0x00009a7f      0x7b5 ..\obj\spi_bus.o
- .debug_info    0x0000a234      0x546 ..\obj\misc.o
- .debug_info    0x0000a77a      0x971 ..\obj\stm32f10x_spi.o
- .debug_info    0x0000b0eb      0x193 ..\obj\heap_1.o
+ .debug_info    0x00003ac5      0x3ac ..\obj\indicator.o
+ .debug_info    0x00003e71       0xef ..\obj\main.o
+ .debug_info    0x00003f60       0x89 ..\obj\timers.o
+ .debug_info    0x00003fe9      0x2a7 ..\obj\tablo.o
+ .debug_info    0x00004290      0xed2 ..\obj\printf.o
+ .debug_info    0x00005162      0x976 ..\obj\stm32f10x_rcc.o
+ .debug_info    0x00005ad8      0xc80 ..\obj\tasks.o
+ .debug_info    0x00006758      0xc0e ..\obj\stm32f10x_adc.o
+ .debug_info    0x00007366      0x25f ..\obj\keyboard.o
+ .debug_info    0x000075c5      0x2cb ..\obj\list.o
+ .debug_info    0x00007890      0x440 ..\obj\syscalls.o
+ .debug_info    0x00007cd0      0x819 ..\obj\stm32f10x_flash.o
+ .debug_info    0x000084e9      0x214 ..\obj\port.o
+ .debug_info    0x000086fd      0x7a4 ..\obj\queue.o
+ .debug_info    0x00008ea1      0x4a2 ..\obj\stm32f10x_dma.o
+ .debug_info    0x00009343      0x4ec ..\obj\croutine.o
+ .debug_info    0x0000982f      0x290 ..\obj\channels.o
+ .debug_info    0x00009abf      0x7b5 ..\obj\spi_bus.o
+ .debug_info    0x0000a274      0x546 ..\obj\misc.o
+ .debug_info    0x0000a7ba      0x971 ..\obj\stm32f10x_spi.o
+ .debug_info    0x0000b12b      0x193 ..\obj\heap_1.o
 
-.debug_line     0x00000000     0x5cbb
+.debug_line     0x00000000     0x5cd1
  .debug_line    0x00000000      0xac7 ..\obj\stm32f10x_tim.o
  .debug_line    0x00000ac7       0xc7 ..\obj\startup_stm32f10x_md_vl.o
  .debug_line    0x00000b8e      0x29f ..\obj\core_cm3.o
@@ -1281,29 +1284,29 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_line    0x0000109d      0x2a1 ..\obj\stm32f10x_pwr.o
  .debug_line    0x0000133e      0x3e1 ..\obj\stm32f10x_gpio.o
  .debug_line    0x0000171f      0x391 ..\obj\stm32f10x_dac.o
- .debug_line    0x00001ab0      0x279 ..\obj\indicator.o
- .debug_line    0x00001d29       0xf4 ..\obj\main.o
- .debug_line    0x00001e1d       0x78 ..\obj\timers.o
- .debug_line    0x00001e95      0x1f9 ..\obj\tablo.o
- .debug_line    0x0000208e      0x3e0 ..\obj\printf.o
- .debug_line    0x0000246e      0x508 ..\obj\stm32f10x_rcc.o
- .debug_line    0x00002976      0x6ad ..\obj\tasks.o
- .debug_line    0x00003023      0x555 ..\obj\stm32f10x_adc.o
- .debug_line    0x00003578      0x297 ..\obj\keyboard.o
- .debug_line    0x0000380f      0x24e ..\obj\list.o
- .debug_line    0x00003a5d      0x1ae ..\obj\syscalls.o
- .debug_line    0x00003c0b      0x50c ..\obj\stm32f10x_flash.o
- .debug_line    0x00004117      0x24c ..\obj\port.o
- .debug_line    0x00004363      0x46b ..\obj\queue.o
- .debug_line    0x000047ce      0x335 ..\obj\stm32f10x_dma.o
- .debug_line    0x00004b03      0x31d ..\obj\croutine.o
- .debug_line    0x00004e20      0x1ce ..\obj\channels.o
- .debug_line    0x00004fee      0x459 ..\obj\spi_bus.o
- .debug_line    0x00005447      0x276 ..\obj\misc.o
- .debug_line    0x000056bd      0x454 ..\obj\stm32f10x_spi.o
- .debug_line    0x00005b11      0x1aa ..\obj\heap_1.o
+ .debug_line    0x00001ab0      0x28f ..\obj\indicator.o
+ .debug_line    0x00001d3f       0xf4 ..\obj\main.o
+ .debug_line    0x00001e33       0x78 ..\obj\timers.o
+ .debug_line    0x00001eab      0x1f9 ..\obj\tablo.o
+ .debug_line    0x000020a4      0x3e0 ..\obj\printf.o
+ .debug_line    0x00002484      0x508 ..\obj\stm32f10x_rcc.o
+ .debug_line    0x0000298c      0x6ad ..\obj\tasks.o
+ .debug_line    0x00003039      0x555 ..\obj\stm32f10x_adc.o
+ .debug_line    0x0000358e      0x297 ..\obj\keyboard.o
+ .debug_line    0x00003825      0x24e ..\obj\list.o
+ .debug_line    0x00003a73      0x1ae ..\obj\syscalls.o
+ .debug_line    0x00003c21      0x50c ..\obj\stm32f10x_flash.o
+ .debug_line    0x0000412d      0x24c ..\obj\port.o
+ .debug_line    0x00004379      0x46b ..\obj\queue.o
+ .debug_line    0x000047e4      0x335 ..\obj\stm32f10x_dma.o
+ .debug_line    0x00004b19      0x31d ..\obj\croutine.o
+ .debug_line    0x00004e36      0x1ce ..\obj\channels.o
+ .debug_line    0x00005004      0x459 ..\obj\spi_bus.o
+ .debug_line    0x0000545d      0x276 ..\obj\misc.o
+ .debug_line    0x000056d3      0x454 ..\obj\stm32f10x_spi.o
+ .debug_line    0x00005b27      0x1aa ..\obj\heap_1.o
 
-.debug_loc      0x00000000     0x57a4
+.debug_loc      0x00000000     0x57dc
  .debug_loc     0x00000000     0x13e8 ..\obj\stm32f10x_tim.o
  .debug_loc     0x000013e8       0x64 ..\obj\startup_stm32f10x_md_vl.o
  .debug_loc     0x0000144c      0x3f0 ..\obj\core_cm3.o
@@ -1311,29 +1314,29 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_loc     0x00001904      0x238 ..\obj\stm32f10x_pwr.o
  .debug_loc     0x00001b3c      0x3e4 ..\obj\stm32f10x_gpio.o
  .debug_loc     0x00001f20      0x3ac ..\obj\stm32f10x_dac.o
- .debug_loc     0x000022cc       0x70 ..\obj\indicator.o
- .debug_loc     0x0000233c       0x70 ..\obj\main.o
- .debug_loc     0x000023ac       0x64 ..\obj\tablo.o
- .debug_loc     0x00002410      0x3ea ..\obj\printf.o
- .debug_loc     0x000027fa      0x714 ..\obj\stm32f10x_rcc.o
- .debug_loc     0x00002f0e      0x698 ..\obj\tasks.o
- .debug_loc     0x000035a6      0x7d4 ..\obj\stm32f10x_adc.o
- .debug_loc     0x00003d7a       0x70 ..\obj\keyboard.o
- .debug_loc     0x00003dea      0x118 ..\obj\list.o
- .debug_loc     0x00003f02      0x1ec ..\obj\syscalls.o
- .debug_loc     0x000040ee      0x5d8 ..\obj\stm32f10x_flash.o
- .debug_loc     0x000046c6      0x178 ..\obj\port.o
- .debug_loc     0x0000483e      0x380 ..\obj\queue.o
- .debug_loc     0x00004bbe      0x268 ..\obj\stm32f10x_dma.o
- .debug_loc     0x00004e26      0x188 ..\obj\croutine.o
- .debug_loc     0x00004fae       0x2c ..\obj\channels.o
- .debug_loc     0x00004fda       0xe2 ..\obj\spi_bus.o
- .debug_loc     0x000050bc      0x118 ..\obj\misc.o
- .debug_loc     0x000051d4      0x508 ..\obj\stm32f10x_spi.o
- .debug_loc     0x000056dc       0xc8 ..\obj\heap_1.o
+ .debug_loc     0x000022cc       0xa8 ..\obj\indicator.o
+ .debug_loc     0x00002374       0x70 ..\obj\main.o
+ .debug_loc     0x000023e4       0x64 ..\obj\tablo.o
+ .debug_loc     0x00002448      0x3ea ..\obj\printf.o
+ .debug_loc     0x00002832      0x714 ..\obj\stm32f10x_rcc.o
+ .debug_loc     0x00002f46      0x698 ..\obj\tasks.o
+ .debug_loc     0x000035de      0x7d4 ..\obj\stm32f10x_adc.o
+ .debug_loc     0x00003db2       0x70 ..\obj\keyboard.o
+ .debug_loc     0x00003e22      0x118 ..\obj\list.o
+ .debug_loc     0x00003f3a      0x1ec ..\obj\syscalls.o
+ .debug_loc     0x00004126      0x5d8 ..\obj\stm32f10x_flash.o
+ .debug_loc     0x000046fe      0x178 ..\obj\port.o
+ .debug_loc     0x00004876      0x380 ..\obj\queue.o
+ .debug_loc     0x00004bf6      0x268 ..\obj\stm32f10x_dma.o
+ .debug_loc     0x00004e5e      0x188 ..\obj\croutine.o
+ .debug_loc     0x00004fe6       0x2c ..\obj\channels.o
+ .debug_loc     0x00005012       0xe2 ..\obj\spi_bus.o
+ .debug_loc     0x000050f4      0x118 ..\obj\misc.o
+ .debug_loc     0x0000520c      0x508 ..\obj\stm32f10x_spi.o
+ .debug_loc     0x00005714       0xc8 ..\obj\heap_1.o
 
 .debug_pubnames
-                0x00000000     0x23fa
+                0x00000000     0x2409
  .debug_pubnames
                 0x00000000      0x7b0 ..\obj\stm32f10x_tim.o
  .debug_pubnames
@@ -1349,45 +1352,45 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_pubnames
                 0x00000c1c      0x17d ..\obj\stm32f10x_dac.o
  .debug_pubnames
-                0x00000d99       0x4b ..\obj\indicator.o
+                0x00000d99       0x5a ..\obj\indicator.o
  .debug_pubnames
-                0x00000de4       0x1b ..\obj\main.o
+                0x00000df3       0x1b ..\obj\main.o
  .debug_pubnames
-                0x00000dff       0x51 ..\obj\tablo.o
+                0x00000e0e       0x51 ..\obj\tablo.o
  .debug_pubnames
-                0x00000e50      0x101 ..\obj\printf.o
+                0x00000e5f      0x101 ..\obj\printf.o
  .debug_pubnames
-                0x00000f51      0x2da ..\obj\stm32f10x_rcc.o
+                0x00000f60      0x2da ..\obj\stm32f10x_rcc.o
  .debug_pubnames
-                0x0000122b      0x24c ..\obj\tasks.o
+                0x0000123a      0x24c ..\obj\tasks.o
  .debug_pubnames
-                0x00001477      0x401 ..\obj\stm32f10x_adc.o
+                0x00001486      0x401 ..\obj\stm32f10x_adc.o
  .debug_pubnames
-                0x00001878       0x36 ..\obj\keyboard.o
+                0x00001887       0x36 ..\obj\keyboard.o
  .debug_pubnames
-                0x000018ae       0x71 ..\obj\list.o
+                0x000018bd       0x71 ..\obj\list.o
  .debug_pubnames
-                0x0000191f       0x71 ..\obj\syscalls.o
+                0x0000192e       0x71 ..\obj\syscalls.o
  .debug_pubnames
-                0x00001990      0x2f2 ..\obj\stm32f10x_flash.o
+                0x0000199f      0x2f2 ..\obj\stm32f10x_flash.o
  .debug_pubnames
-                0x00001c82      0x101 ..\obj\port.o
+                0x00001c91      0x101 ..\obj\port.o
  .debug_pubnames
-                0x00001d83      0x12e ..\obj\queue.o
+                0x00001d92      0x12e ..\obj\queue.o
  .debug_pubnames
-                0x00001eb1       0xea ..\obj\stm32f10x_dma.o
+                0x00001ec0       0xea ..\obj\stm32f10x_dma.o
  .debug_pubnames
-                0x00001f9b       0x96 ..\obj\croutine.o
+                0x00001faa       0x96 ..\obj\croutine.o
  .debug_pubnames
-                0x00002031       0x8b ..\obj\channels.o
+                0x00002040       0x8b ..\obj\channels.o
  .debug_pubnames
-                0x000020bc       0x5b ..\obj\spi_bus.o
+                0x000020cb       0x5b ..\obj\spi_bus.o
  .debug_pubnames
-                0x00002117       0x89 ..\obj\misc.o
+                0x00002126       0x89 ..\obj\misc.o
  .debug_pubnames
-                0x000021a0      0x1f6 ..\obj\stm32f10x_spi.o
+                0x000021af      0x1f6 ..\obj\stm32f10x_spi.o
  .debug_pubnames
-                0x00002396       0x64 ..\obj\heap_1.o
+                0x000023a5       0x64 ..\obj\heap_1.o
 
 .debug_pubtypes
                 0x00000000      0xf0c
@@ -1446,7 +1449,7 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_pubtypes
                 0x00000ee0       0x2c ..\obj\heap_1.o
 
-.debug_aranges  0x00000000      0xf78
+.debug_aranges  0x00000000      0xf80
  .debug_aranges
                 0x00000000      0x2f0 ..\obj\stm32f10x_tim.o
  .debug_aranges
@@ -1462,47 +1465,47 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_aranges
                 0x00000530       0xa0 ..\obj\stm32f10x_dac.o
  .debug_aranges
-                0x000005d0       0x28 ..\obj\indicator.o
+                0x000005d0       0x30 ..\obj\indicator.o
  .debug_aranges
-                0x000005f8       0x28 ..\obj\main.o
+                0x00000600       0x28 ..\obj\main.o
  .debug_aranges
-                0x00000620       0x28 ..\obj\tablo.o
+                0x00000628       0x28 ..\obj\tablo.o
  .debug_aranges
-                0x00000648       0xa0 ..\obj\printf.o
+                0x00000650       0xa0 ..\obj\printf.o
  .debug_aranges
-                0x000006e8      0x120 ..\obj\stm32f10x_rcc.o
+                0x000006f0      0x120 ..\obj\stm32f10x_rcc.o
  .debug_aranges
-                0x00000808      0x110 ..\obj\tasks.o
+                0x00000810      0x110 ..\obj\tasks.o
  .debug_aranges
-                0x00000918      0x138 ..\obj\stm32f10x_adc.o
+                0x00000920      0x138 ..\obj\stm32f10x_adc.o
  .debug_aranges
-                0x00000a50       0x28 ..\obj\keyboard.o
+                0x00000a58       0x28 ..\obj\keyboard.o
  .debug_aranges
-                0x00000a78       0x40 ..\obj\list.o
+                0x00000a80       0x40 ..\obj\list.o
  .debug_aranges
-                0x00000ab8       0x60 ..\obj\syscalls.o
+                0x00000ac0       0x60 ..\obj\syscalls.o
  .debug_aranges
-                0x00000b18       0xf8 ..\obj\stm32f10x_flash.o
+                0x00000b20       0xf8 ..\obj\stm32f10x_flash.o
  .debug_aranges
-                0x00000c10       0x70 ..\obj\port.o
+                0x00000c18       0x70 ..\obj\port.o
  .debug_aranges
-                0x00000c80       0x98 ..\obj\queue.o
+                0x00000c88       0x98 ..\obj\queue.o
  .debug_aranges
-                0x00000d18       0x70 ..\obj\stm32f10x_dma.o
+                0x00000d20       0x70 ..\obj\stm32f10x_dma.o
  .debug_aranges
-                0x00000d88       0x50 ..\obj\croutine.o
+                0x00000d90       0x50 ..\obj\croutine.o
  .debug_aranges
-                0x00000dd8       0x20 ..\obj\channels.o
+                0x00000de0       0x20 ..\obj\channels.o
  .debug_aranges
-                0x00000df8       0x38 ..\obj\spi_bus.o
+                0x00000e00       0x38 ..\obj\spi_bus.o
  .debug_aranges
-                0x00000e30       0x40 ..\obj\misc.o
+                0x00000e38       0x40 ..\obj\misc.o
  .debug_aranges
-                0x00000e70       0xd0 ..\obj\stm32f10x_spi.o
+                0x00000e78       0xd0 ..\obj\stm32f10x_spi.o
  .debug_aranges
-                0x00000f40       0x38 ..\obj\heap_1.o
+                0x00000f48       0x38 ..\obj\heap_1.o
 
-.debug_ranges   0x00000000      0xdc8
+.debug_ranges   0x00000000      0xdd0
  .debug_ranges  0x00000000      0x2e0 ..\obj\stm32f10x_tim.o
  .debug_ranges  0x000002e0       0x18 ..\obj\startup_stm32f10x_md_vl.o
  .debug_ranges  0x000002f8       0xb8 ..\obj\core_cm3.o
@@ -1510,28 +1513,28 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_ranges  0x000003d8       0x60 ..\obj\stm32f10x_pwr.o
  .debug_ranges  0x00000438       0x98 ..\obj\stm32f10x_gpio.o
  .debug_ranges  0x000004d0       0x90 ..\obj\stm32f10x_dac.o
- .debug_ranges  0x00000560       0x18 ..\obj\indicator.o
- .debug_ranges  0x00000578       0x18 ..\obj\main.o
- .debug_ranges  0x00000590       0x18 ..\obj\tablo.o
- .debug_ranges  0x000005a8       0x90 ..\obj\printf.o
- .debug_ranges  0x00000638      0x110 ..\obj\stm32f10x_rcc.o
- .debug_ranges  0x00000748      0x100 ..\obj\tasks.o
- .debug_ranges  0x00000848      0x128 ..\obj\stm32f10x_adc.o
- .debug_ranges  0x00000970       0x18 ..\obj\keyboard.o
- .debug_ranges  0x00000988       0x30 ..\obj\list.o
- .debug_ranges  0x000009b8       0x50 ..\obj\syscalls.o
- .debug_ranges  0x00000a08       0xe8 ..\obj\stm32f10x_flash.o
- .debug_ranges  0x00000af0       0x60 ..\obj\port.o
- .debug_ranges  0x00000b50       0x88 ..\obj\queue.o
- .debug_ranges  0x00000bd8       0x60 ..\obj\stm32f10x_dma.o
- .debug_ranges  0x00000c38       0x40 ..\obj\croutine.o
- .debug_ranges  0x00000c78       0x10 ..\obj\channels.o
- .debug_ranges  0x00000c88       0x28 ..\obj\spi_bus.o
- .debug_ranges  0x00000cb0       0x30 ..\obj\misc.o
- .debug_ranges  0x00000ce0       0xc0 ..\obj\stm32f10x_spi.o
- .debug_ranges  0x00000da0       0x28 ..\obj\heap_1.o
+ .debug_ranges  0x00000560       0x20 ..\obj\indicator.o
+ .debug_ranges  0x00000580       0x18 ..\obj\main.o
+ .debug_ranges  0x00000598       0x18 ..\obj\tablo.o
+ .debug_ranges  0x000005b0       0x90 ..\obj\printf.o
+ .debug_ranges  0x00000640      0x110 ..\obj\stm32f10x_rcc.o
+ .debug_ranges  0x00000750      0x100 ..\obj\tasks.o
+ .debug_ranges  0x00000850      0x128 ..\obj\stm32f10x_adc.o
+ .debug_ranges  0x00000978       0x18 ..\obj\keyboard.o
+ .debug_ranges  0x00000990       0x30 ..\obj\list.o
+ .debug_ranges  0x000009c0       0x50 ..\obj\syscalls.o
+ .debug_ranges  0x00000a10       0xe8 ..\obj\stm32f10x_flash.o
+ .debug_ranges  0x00000af8       0x60 ..\obj\port.o
+ .debug_ranges  0x00000b58       0x88 ..\obj\queue.o
+ .debug_ranges  0x00000be0       0x60 ..\obj\stm32f10x_dma.o
+ .debug_ranges  0x00000c40       0x40 ..\obj\croutine.o
+ .debug_ranges  0x00000c80       0x10 ..\obj\channels.o
+ .debug_ranges  0x00000c90       0x28 ..\obj\spi_bus.o
+ .debug_ranges  0x00000cb8       0x30 ..\obj\misc.o
+ .debug_ranges  0x00000ce8       0xc0 ..\obj\stm32f10x_spi.o
+ .debug_ranges  0x00000da8       0x28 ..\obj\heap_1.o
 
-.debug_str      0x00000000     0x49f4
+.debug_str      0x00000000     0x49fa
  .debug_str     0x00000000      0xcbb ..\obj\stm32f10x_tim.o
                                 0xd5c (size before relaxing)
  .debug_str     0x00000cbb       0xd5 ..\obj\startup_stm32f10x_md_vl.o
@@ -1546,47 +1549,47 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
                                 0x498 (size before relaxing)
  .debug_str     0x0000156f      0x2b5 ..\obj\stm32f10x_dac.o
                                 0x3c2 (size before relaxing)
- .debug_str     0x00001824      0x1f1 ..\obj\indicator.o
-                                0x2a4 (size before relaxing)
- .debug_str     0x00001a15       0x76 ..\obj\main.o
+ .debug_str     0x00001824      0x1fc ..\obj\indicator.o
+                                0x2af (size before relaxing)
+ .debug_str     0x00001a20       0x76 ..\obj\main.o
                                 0x187 (size before relaxing)
- .debug_str     0x00001a8b       0x66 ..\obj\timers.o
+ .debug_str     0x00001a96       0x66 ..\obj\timers.o
                                 0x103 (size before relaxing)
- .debug_str     0x00001af1       0x86 ..\obj\tablo.o
+ .debug_str     0x00001afc       0x86 ..\obj\tablo.o
                                 0x223 (size before relaxing)
- .debug_str     0x00001b77      0x4bc ..\obj\printf.o
+ .debug_str     0x00001b82      0x4b7 ..\obj\printf.o
                                 0x620 (size before relaxing)
- .debug_str     0x00002033      0x43f ..\obj\stm32f10x_rcc.o
+ .debug_str     0x00002039      0x43f ..\obj\stm32f10x_rcc.o
                                 0x5ec (size before relaxing)
- .debug_str     0x00002472      0x727 ..\obj\tasks.o
+ .debug_str     0x00002478      0x727 ..\obj\tasks.o
                                 0x85a (size before relaxing)
- .debug_str     0x00002b99      0x53e ..\obj\stm32f10x_adc.o
+ .debug_str     0x00002b9f      0x53e ..\obj\stm32f10x_adc.o
                                 0x67a (size before relaxing)
- .debug_str     0x000030d7       0x9f ..\obj\keyboard.o
+ .debug_str     0x000030dd       0x9f ..\obj\keyboard.o
                                 0x28f (size before relaxing)
- .debug_str     0x00003176       0xf7 ..\obj\list.o
+ .debug_str     0x0000317c       0xf7 ..\obj\list.o
                                 0x237 (size before relaxing)
- .debug_str     0x0000326d      0x169 ..\obj\syscalls.o
+ .debug_str     0x00003273      0x169 ..\obj\syscalls.o
                                 0x2a0 (size before relaxing)
- .debug_str     0x000033d6      0x447 ..\obj\stm32f10x_flash.o
+ .debug_str     0x000033dc      0x447 ..\obj\stm32f10x_flash.o
                                 0x567 (size before relaxing)
- .debug_str     0x0000381d      0x170 ..\obj\port.o
+ .debug_str     0x00003823      0x170 ..\obj\port.o
                                 0x240 (size before relaxing)
- .debug_str     0x0000398d      0x322 ..\obj\queue.o
+ .debug_str     0x00003993      0x322 ..\obj\queue.o
                                 0x4d4 (size before relaxing)
- .debug_str     0x00003caf      0x23e ..\obj\stm32f10x_dma.o
+ .debug_str     0x00003cb5      0x23e ..\obj\stm32f10x_dma.o
                                 0x340 (size before relaxing)
- .debug_str     0x00003eed      0x29c ..\obj\croutine.o
+ .debug_str     0x00003ef3      0x29c ..\obj\croutine.o
                                 0x443 (size before relaxing)
- .debug_str     0x00004189      0x121 ..\obj\channels.o
+ .debug_str     0x0000418f      0x121 ..\obj\channels.o
                                 0x1f9 (size before relaxing)
- .debug_str     0x000042aa      0x18a ..\obj\spi_bus.o
+ .debug_str     0x000042b0      0x18a ..\obj\spi_bus.o
                                 0x5e5 (size before relaxing)
- .debug_str     0x00004434      0x1e5 ..\obj\misc.o
+ .debug_str     0x0000443a      0x1e5 ..\obj\misc.o
                                 0x342 (size before relaxing)
- .debug_str     0x00004619      0x2e0 ..\obj\stm32f10x_spi.o
+ .debug_str     0x0000461f      0x2e0 ..\obj\stm32f10x_spi.o
                                 0x57c (size before relaxing)
- .debug_str     0x000048f9       0xfb ..\obj\heap_1.o
+ .debug_str     0x000048ff       0xfb ..\obj\heap_1.o
                                 0x1ab (size before relaxing)
 
 .comment        0x00000000       0x2a
@@ -1697,7 +1700,7 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .ARM.attributes
                 0x0000065e       0x29 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strncpy.o)
 
-.debug_frame    0x00000000     0x30bc
+.debug_frame    0x00000000     0x30e0
  .debug_frame   0x00000000      0xa20 ..\obj\stm32f10x_tim.o
  .debug_frame   0x00000a20       0x48 ..\obj\startup_stm32f10x_md_vl.o
  .debug_frame   0x00000a68      0x280 ..\obj\core_cm3.o
@@ -1705,27 +1708,27 @@ OUTPUT(tablo_proto_test.elf elf32-littlearm)
  .debug_frame   0x00000d68      0x140 ..\obj\stm32f10x_pwr.o
  .debug_frame   0x00000ea8      0x210 ..\obj\stm32f10x_gpio.o
  .debug_frame   0x000010b8      0x1ec ..\obj\stm32f10x_dac.o
- .debug_frame   0x000012a4       0x50 ..\obj\indicator.o
- .debug_frame   0x000012f4       0x50 ..\obj\main.o
- .debug_frame   0x00001344       0x48 ..\obj\tablo.o
- .debug_frame   0x0000138c      0x244 ..\obj\printf.o
- .debug_frame   0x000015d0      0x3a4 ..\obj\stm32f10x_rcc.o
- .debug_frame   0x00001974      0x3c0 ..\obj\tasks.o
- .debug_frame   0x00001d34      0x400 ..\obj\stm32f10x_adc.o
- .debug_frame   0x00002134       0x50 ..\obj\keyboard.o
- .debug_frame   0x00002184       0x9c ..\obj\list.o
- .debug_frame   0x00002220      0x108 ..\obj\syscalls.o
- .debug_frame   0x00002328      0x338 ..\obj\stm32f10x_flash.o
- .debug_frame   0x00002660      0x110 ..\obj\port.o
- .debug_frame   0x00002770      0x204 ..\obj\queue.o
- .debug_frame   0x00002974      0x144 ..\obj\stm32f10x_dma.o
- .debug_frame   0x00002ab8       0xf0 ..\obj\croutine.o
- .debug_frame   0x00002ba8       0x28 ..\obj\channels.o
- .debug_frame   0x00002bd0       0x90 ..\obj\spi_bus.o
- .debug_frame   0x00002c60       0x9c ..\obj\misc.o
- .debug_frame   0x00002cfc      0x29c ..\obj\stm32f10x_spi.o
- .debug_frame   0x00002f98       0x7c ..\obj\heap_1.o
- .debug_frame   0x00003014       0x30 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
- .debug_frame   0x00003044       0x2c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
- .debug_frame   0x00003070       0x20 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strlen.o)
- .debug_frame   0x00003090       0x2c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strncpy.o)
+ .debug_frame   0x000012a4       0x74 ..\obj\indicator.o
+ .debug_frame   0x00001318       0x50 ..\obj\main.o
+ .debug_frame   0x00001368       0x48 ..\obj\tablo.o
+ .debug_frame   0x000013b0      0x244 ..\obj\printf.o
+ .debug_frame   0x000015f4      0x3a4 ..\obj\stm32f10x_rcc.o
+ .debug_frame   0x00001998      0x3c0 ..\obj\tasks.o
+ .debug_frame   0x00001d58      0x400 ..\obj\stm32f10x_adc.o
+ .debug_frame   0x00002158       0x50 ..\obj\keyboard.o
+ .debug_frame   0x000021a8       0x9c ..\obj\list.o
+ .debug_frame   0x00002244      0x108 ..\obj\syscalls.o
+ .debug_frame   0x0000234c      0x338 ..\obj\stm32f10x_flash.o
+ .debug_frame   0x00002684      0x110 ..\obj\port.o
+ .debug_frame   0x00002794      0x204 ..\obj\queue.o
+ .debug_frame   0x00002998      0x144 ..\obj\stm32f10x_dma.o
+ .debug_frame   0x00002adc       0xf0 ..\obj\croutine.o
+ .debug_frame   0x00002bcc       0x28 ..\obj\channels.o
+ .debug_frame   0x00002bf4       0x90 ..\obj\spi_bus.o
+ .debug_frame   0x00002c84       0x9c ..\obj\misc.o
+ .debug_frame   0x00002d20      0x29c ..\obj\stm32f10x_spi.o
+ .debug_frame   0x00002fbc       0x7c ..\obj\heap_1.o
+ .debug_frame   0x00003038       0x30 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy.o)
+ .debug_frame   0x00003068       0x2c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
+ .debug_frame   0x00003094       0x20 c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strlen.o)
+ .debug_frame   0x000030b4       0x2c c:/coocox/coide/gcc/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-strncpy.o)
