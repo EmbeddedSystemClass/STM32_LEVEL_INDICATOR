@@ -51,8 +51,8 @@ void ADC_Sensor_Init(void)//
 	RCC_APB2PeriphClockCmd(RCC_GPIO_ADC, ENABLE);
 
 
-	 /* Конфигурация ПВВ. PA*/
-	 GPIO_InitStructure.GPIO_Pin = ADC_PIN_1 | ADC_PIN_2 | ADC_PIN_3|ADC_PIN_4;
+
+	 GPIO_InitStructure.GPIO_Pin = ADC_PIN_1 /*| ADC_PIN_2 | ADC_PIN_3|ADC_PIN_4*/;
 	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
 	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	 GPIO_Init(ADC_GPIO, &GPIO_InitStructure);
@@ -68,13 +68,13 @@ void ADC_Sensor_Init(void)//
 
 
 	 /* Set injected sequencer length */
-	 ADC_InjectedSequencerLengthConfig(ADC1, 4);
+	 ADC_InjectedSequencerLengthConfig(ADC1, 1);
 
 	 /* ADC1 injected channel Configuration */
 	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_1, 1, ADC_SampleTime_239Cycles5);
-	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_2, 2, ADC_SampleTime_239Cycles5);
-	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_3, 3, ADC_SampleTime_239Cycles5);
-	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_4, 4, ADC_SampleTime_239Cycles5);
+//	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_2, 2, ADC_SampleTime_239Cycles5);
+//	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_3, 3, ADC_SampleTime_239Cycles5);
+//	 ADC_InjectedChannelConfig(ADC1, ADC_CHN_4, 4, ADC_SampleTime_239Cycles5);
 
 	 /* ADC1 injected external trigger configuration */
 	 ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_None);
@@ -102,15 +102,17 @@ void ADC_Sensor_Init(void)//
 	 xTaskCreate(ADC_Poll_task,(signed char*)"ADC_Poll_task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
+uint8_t adc_ready=0;
 ADC1_IRQHandler(void)
 {
 	if (ADC_GetITStatus(ADC1, ADC_IT_JEOC))
 	{
         ADC_ClearITPendingBit(ADC1, ADC_IT_JEOC);
         ADC_Data_1 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);
-        ADC_Data_2 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2);
-        ADC_Data_3 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_3);
-        ADC_Data_4 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_4);
+//        ADC_Data_2 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2);
+//        ADC_Data_3 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_3);
+//        ADC_Data_4 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_4);
+        adc_ready=1;
     }
 
 //	if (ADC_GetITStatus(ADC1, ADC_IT_EOC))
@@ -123,12 +125,25 @@ ADC1_IRQHandler(void)
 
 static void ADC_Poll_task(void *pvParameters)
 {
+	static uint32_t adc_accum=0;
+	uint8_t i=0;
 	while(1)
 	{
-		vTaskDelay(50);
-		ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
-		vTaskDelay(50);
-		ADC_Data_1&=0xFFF;
+		adc_accum=0;
+		for(i=0;i<32;i++)
+		{
+			vTaskDelay(5);
+			ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
+			 while(!adc_ready)
+			 {
+				 taskYIELD();
+			 }
+			 adc_ready=0;
+			 adc_accum+=ADC_Data_1;
+		}
+//		vTaskDelay(50);
+		ADC_Data_1=adc_accum/32;
+
 		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
 		 tab.indicators[0].decimal_point=0;
 		 indicators_set_num(&tab.indicators[0],ADC_Data_1);

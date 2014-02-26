@@ -95,10 +95,10 @@
     <File name="devices/adc_sensor.c" path="devices/adc_sensor.c" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/tasks.c" path="FreeRTOSV7.1.0/Source/tasks.c" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/croutine.h" path="FreeRTOSV7.1.0/Source/include/croutine.h" type="1"/>
+    <File name="stm_lib/inc/stm32f10x_pwr.h" path="stm_lib/inc/stm32f10x_pwr.h" type="1"/>
+    <File name="devices/dac.h" path="devices/dac.h" type="1"/>
     <File name="FreeRTOSV7.1.0/License" path="" type="2"/>
     <File name="stm_lib/src/stm32f10x_tim.c" path="stm_lib/src/stm32f10x_tim.c" type="1"/>
-    <File name="devices/dac.h" path="devices/dac.h" type="1"/>
-    <File name="stm_lib/inc/stm32f10x_pwr.h" path="stm_lib/inc/stm32f10x_pwr.h" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/include/portable.h" path="FreeRTOSV7.1.0/Source/include/portable.h" type="1"/>
     <File name="devices/spi_bus.c" path="devices/spi_bus.c" type="1"/>
@@ -117,10 +117,10 @@
     <File name="devices" path="" type="2"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis/core_cm3.c" path="cmsis/core_cm3.c" type="1"/>
-    <File name="stm_lib/inc/stm32f10x_spi.h" path="stm_lib/inc/stm32f10x_spi.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/projdefs.h" path="FreeRTOSV7.1.0/Source/include/projdefs.h" type="1"/>
-    <File name="stm_lib/inc/stm32f10x_dma.h" path="stm_lib/inc/stm32f10x_dma.h" type="1"/>
+    <File name="stm_lib/inc/stm32f10x_spi.h" path="stm_lib/inc/stm32f10x_spi.h" type="1"/>
     <File name="stm_lib/src/stm32f10x_adc.c" path="stm_lib/src/stm32f10x_adc.c" type="1"/>
+    <File name="stm_lib/inc/stm32f10x_dma.h" path="stm_lib/inc/stm32f10x_dma.h" type="1"/>
     <File name="protocols/preferences.h" path="protocols/preferences.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/timers.h" path="FreeRTOSV7.1.0/Source/include/timers.h" type="1"/>
     <File name="protocols/channels.c" path="protocols/channels.c" type="1"/>
@@ -150,9 +150,9 @@
     <File name="cmsis" path="" type="2"/>
     <File name="stm_lib" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/readme.txt" path="FreeRTOSV7.1.0/readme.txt" type="1"/>
-    <File name="FreeRTOSV7.1.0/License/license.txt" path="FreeRTOSV7.1.0/License/license.txt" type="1"/>
-    <File name="FreeRTOSV7.1.0/Source/include" path="" type="2"/>
     <File name="stm_lib/src/stm32f10x_flash.c" path="stm_lib/src/stm32f10x_flash.c" type="1"/>
+    <File name="FreeRTOSV7.1.0/Source/include" path="" type="2"/>
+    <File name="FreeRTOSV7.1.0/License/license.txt" path="FreeRTOSV7.1.0/License/license.txt" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/mpu_wrappers.h" path="FreeRTOSV7.1.0/Source/include/mpu_wrappers.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/portable/ARM_CM3/port.c" path="FreeRTOSV7.1.0/Source/portable/ARM_CM3/port.c" type="1"/>
     <File name="stm_lib/inc/stm32f10x_adc.h" path="stm_lib/inc/stm32f10x_adc.h" type="1"/>
@@ -164,9 +164,9 @@
     <File name="FreeRTOSV7.1.0/Source/portable/MemMang" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/include/queue.h" path="FreeRTOSV7.1.0/Source/include/queue.h" type="1"/>
-    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
-    <File name="stm_lib/inc" path="" type="2"/>
     <File name="FreeRTOSV7.1.0/Source/portable/ARM_CM3/portmacro.h" path="FreeRTOSV7.1.0/Source/portable/ARM_CM3/portmacro.h" type="1"/>
+    <File name="stm_lib/inc" path="" type="2"/>
+    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/StackMacros.h" path="FreeRTOSV7.1.0/Source/include/StackMacros.h" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="FreeRTOSV7.1.0/Source/include/semphr.h" path="FreeRTOSV7.1.0/Source/include/semphr.h" type="1"/>
