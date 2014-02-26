@@ -1,0 +1,117 @@
+12:13:00.281 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,clone,-A,admin,http://admin:e12d15@data.coocox.org:9090/cgi-bin/repo/382c65fb-ba3b-4b39-a0dd-d89c25733ccd,C:/CooCox/CoIDE/repo\.rn\fossils\382c65fb-ba3b-4b39-a0dd-d89c25733ccd.fossil] executed OK 
+Bytes      Cards  Artifacts     Deltas
+Sent:              53          1          0          0
+waiting for server...
+processed: 1%         
+processed: 6%         
+processed: 8%         
+processed: 28%         
+processed: 29%         
+processed: 31%         
+processed: 33%         
+processed: 84%         
+processed: 86%         
+processed: 95%         
+processed: 96%         
+processed: 98%         
+Received:        3001         13          5          0
+Sent:              58          2          0          0
+waiting for server...
+processed: 3%         
+Received:         634          2          0          0
+Total network traffic: 645 bytes sent, 3869 bytes received
+Rebuilding repository meta-data...
+  0.0% complete...
+  20.0% complete...
+  40.0% complete...
+  60.0% complete...
+  80.0% complete...
+  100.0% complete...
+project-id: b8291846d52fc92b08181e42e029ed62f25bdcd5
+server-id:  35f3406e49c06c1cb923b2781bf356173928751e
+admin-user: admin (password is "b88cfe")
+
+12:13:00.281 [Worker-32] ERROR org.coocox.codb.common.log.ErrorLog - [clone user pass] executed Error 
+C:\CooCox\CoIDE\bin\fossil.exe: SQLITE_ERROR: table blob already exists
+C:\CooCox\CoIDE\bin\fossil.exe: table blob already exists
+If you have recently updated your fossil executable, you might
+need to run "fossil all rebuild" to bring the repository
+schemas up to date.
+
+12:13:00.296 [Worker-32] ERROR org.coocox.codb.common.log.ErrorLog - freshExamplesByCompId API failed 
+clone from server errored
+org.coocox.codb.common.fossil.Fossil.cloneFromServer(Fossil.java:89)
+org.coocox.codb.client.core.service.RepoService.clone(RepoService.java:79)
+org.coocox.codb.client.core.api.impl.ExampleApiImpl.freshExamplesByCompId(ExampleApiImpl.java:272)
+org.coocox.example.core.impl.ExampleDBCmdHandler.freshExamplesByCompId(ExampleDBCmdHandler.java:51)
+org.coocox.integrate.component.views.ComponentView$4$1.run(ComponentView.java:346)
+org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+
+12:13:01.265 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,open,C:/CooCox/CoIDE/repo\.rn\fossils\382c65fb-ba3b-4b39-a0dd-d89c25733ccd.fossil,-latest] executed OK 
+doc/description.html
+doc/docInfo.dat
+src/example/DAC_Exp.c
+project-name: <unnamed>
+repository:   C:/CooCox/CoIDE/repo\.rn\fossils\382c65fb-ba3b-4b39-a0dd-d89c25733ccd.fossil
+local-root:   C:/CooCox/CoIDE/repo/Examples/993_DAC_Exp/
+user-home:    C:/Documents and Settings/А.Виноградов/Application Data
+project-code: b8291846d52fc92b08181e42e029ed62f25bdcd5
+checkout:     dc6525ac5a42930e1c044e6f2cf15f68cc069557 2013-11-13 02:11:34 UTC
+parent:       e78d47a9ea2314f354d8a2074a46d232be62a85b 2013-11-13 02:09:49 UTC
+tags:         trunk
+comment:      commit the example sourceCode (user: admin)
+
+12:13:02.109 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,close,-force] executed OK 
+
+
+12:13:06.000 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,clone,-A,admin,http://admin:8b10b6@data.coocox.org:9090/cgi-bin/repo/faf0a49c-a214-4ded-880d-daf87e9dbeb5,C:/CooCox/CoIDE/repo\.rn\fossils\faf0a49c-a214-4ded-880d-daf87e9dbeb5.fossil] executed OK 
+Bytes      Cards  Artifacts     Deltas
+Sent:              53          1          0          0
+waiting for server...
+processed: 1%         
+processed: 5%         
+processed: 7%         
+processed: 16%         
+processed: 17%         
+processed: 19%         
+processed: 20%         
+processed: 86%         
+processed: 88%         
+processed: 96%         
+processed: 99%         
+Received:        3707         13          5          0
+Sent:              58          2          0          0
+waiting for server...
+processed: 3%         
+Received:         634          2          0          0
+Total network traffic: 644 bytes sent, 4575 bytes received
+Rebuilding repository meta-data...
+  0.0% complete...
+  20.0% complete...
+  40.0% complete...
+  60.0% complete...
+  80.0% complete...
+  100.0% complete...
+project-id: 1a5df5437a9ff69e5b03d5bbbeea0f55c3666082
+server-id:  61a8778b744efda21b95c07b17c5c0fc05827ae7
+admin-user: admin (password is "c1c2fa")
+
+12:13:06.593 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,open,C:/CooCox/CoIDE/repo\.rn\fossils\faf0a49c-a214-4ded-880d-daf87e9dbeb5.fossil,-latest] executed OK 
+doc/description.html
+doc/docInfo.dat
+src/example/DualModeDMA_SineWave.c
+project-name: <unnamed>
+repository:   C:/CooCox/CoIDE/repo\.rn\fossils\faf0a49c-a214-4ded-880d-daf87e9dbeb5.fossil
+local-root:   C:/CooCox/CoIDE/repo/Examples/994_DualModeDMA_SineWave/
+user-home:    C:/Documents and Settings/А.Виноградов/Application Data
+project-code: 1a5df5437a9ff69e5b03d5bbbeea0f55c3666082
+checkout:     0f9d8c3b637d12852ab0290839713272b1bdd3e7 2013-11-13 02:13:32 UTC
+parent:       524f4c7971dc6d0f95eb2c84988a4b8b7bb67fe6 2013-11-13 02:11:47 UTC
+tags:         trunk
+comment:      commit the example sourceCode (user: admin)
+
+12:13:07.812 [Worker-35] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin\fossil.exe,close,-force] executed OK 
+
+
+12:13:09.812 [Worker-35] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`447`freshExamplesByCompId`16641

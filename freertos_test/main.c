@@ -19,7 +19,9 @@
 #include "tablo.h"
 
 #include "keyboard.h"
-#include "buzzer.h"
+//#include "buzzer.h"
+#include "adc_sensor.h"
+#include "dac.h"
 
 extern struct tablo tab;//
 static void Init_Task(void *pvParameters);//
@@ -29,7 +31,8 @@ static void Init_Task(void *pvParameters)
 	spi1_config();
 
 	tablo_devices_init();
-
+	DAC_Out_Init();
+//	ADC_Sensor_Init();
 //	  vTaskDelay(2000);
 
 //    Proto_Init();

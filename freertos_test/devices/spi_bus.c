@@ -59,7 +59,7 @@ void	spi1_config(void)//
 	    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	    GPIO_Init(GPIOA, &GPIO_InitStructure);*/
 
-	    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_4;
+	    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_8;
 	    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	    GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -82,7 +82,7 @@ void	spi1_config(void)//
 	   // SPI_SSOutputCmd(SPI1, ENABLE);
 	    SPI_Cmd(SPI1, ENABLE);
 
-	    GPIO_WriteBit(GPIOA, GPIO_Pin_4, Bit_RESET);
+	    GPIO_WriteBit(GPIOA, GPIO_Pin_8, Bit_RESET);
 	//--------------------------------------------------------------------------
 		DMA_InitTypeDef DMA_InitStructure;
 	  //  NVIC_InitTypeDef NVIC_InitStructure;
@@ -160,7 +160,7 @@ static void spi1_task(void *pvParameters)//
 	{
 		for(i=0;i<IND_COMMAND_LEN;i++)
 		{
-			GPIO_WriteBit(GPIOA, GPIO_Pin_4,0);
+			GPIO_WriteBit(GPIOA, GPIO_Pin_8,0);
 
 			if( xSemaphoreTake( xSPI_Buf_Mutex, portMAX_DELAY ) == pdTRUE )
 			{
@@ -181,9 +181,9 @@ static void spi1_task(void *pvParameters)//
 				 xSemaphoreGive( xSPI_Buf_Mutex );
 			}
 
-			GPIO_WriteBit(GPIOA, GPIO_Pin_4,1);
+			GPIO_WriteBit(GPIOA, GPIO_Pin_8,1);
 
-			GPIO_WriteBit(GPIOA, GPIO_Pin_4,0);
+			GPIO_WriteBit(GPIOA, GPIO_Pin_8,0);
 		}
 		vTaskDelay(50);
 	}
