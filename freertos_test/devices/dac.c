@@ -28,5 +28,5 @@ void DAC_Out_Init(void)
      automatically connected to the DAC converter. */
     DAC_Cmd(DAC_Channel_1, ENABLE);
 
-    DAC_SetChannel1Data(DAC_Align_12b_R,2047);
+    //DAC_SetChannel1Data(DAC_Align_12b_R,2047);
 }

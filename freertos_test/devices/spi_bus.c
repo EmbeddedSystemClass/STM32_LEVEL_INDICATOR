@@ -25,7 +25,7 @@ xSemaphoreHandle xSPI_Buf_Mutex;
 uint8_t spi_buses_init(void)//
 {
 	 uint8_t error=0;
-	 xTaskCreate(spi1_task,(signed char*)"SPI_1_TASK",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+	 xTaskCreate(spi1_task,(signed char*)"SPI_1_TASK",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 
 	 xSPI_Buf_Mutex=xSemaphoreCreateMutex();
 
@@ -35,8 +35,8 @@ uint8_t spi_buses_init(void)//
 	 }
 
 	 //test
-	 tab.indicators[0].decimal_point=3;
-	 indicators_set_num(&tab.indicators[0],9.312);
+//	 tab.indicators[0].decimal_point=0;
+//	 indicators_set_num(&tab.indicators[0],1000);
 	return error;
 }
 

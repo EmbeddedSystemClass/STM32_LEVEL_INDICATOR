@@ -6,33 +6,40 @@
 #include <stm32f10x_rcc.h>
 #include <stm32f10x_tim.h>
 #include <stm32f10x_adc.h>
+#include "stm32f10x_dac.h"
 #include "misc.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
 
-#define ADC_CHN_1 ADC_Channel_4
-#define ADC_CHN_2 ADC_Channel_5
-#define ADC_CHN_3 ADC_Channel_7
-#define ADC_CHN_4 ADC_Channel_8
+#include "tablo.h"
+#include "indicator.h"
 
-#define ADC_PIN_1	GPIO_Pin_4
-#define ADC_PIN_2	GPIO_Pin_5
-#define ADC_PIN_3	GPIO_Pin_7
-#define ADC_PIN_4	GPIO_Pin_8
+#define ADC_CHN_1 ADC_Channel_0
+#define ADC_CHN_2 ADC_Channel_1
+#define ADC_CHN_3 ADC_Channel_2
+#define ADC_CHN_4 ADC_Channel_3
+
+#define ADC_PIN_1	GPIO_Pin_0
+#define ADC_PIN_2	GPIO_Pin_1
+#define ADC_PIN_3	GPIO_Pin_2
+#define ADC_PIN_4	GPIO_Pin_3
 #define ADC_GPIO	GPIOA
 
 #define RCC_GPIO_ADC	RCC_APB2Periph_GPIOA
 
-
+static void ADC_Poll_task(void *pvParameters);//
 uint16_t ADC_Data_1,ADC_Data_2,ADC_Data_3,ADC_Data_4;
-
+extern struct tablo tab;//
 void ADC_Sensor_Init(void)//
 {
 
 	ADC_InitTypeDef ADC_InitStructure;
 	NVIC_InitTypeDef nvic;
 	GPIO_InitTypeDef GPIO_InitStructure;
-	//TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	//TIM_OCInitTypeDef TIM_OCInitStructure;
+
 
 	nvic.NVIC_IRQChannel = ADC1_IRQn;
 	nvic.NVIC_IRQChannelPreemptionPriority = 0;
@@ -40,12 +47,10 @@ void ADC_Sensor_Init(void)//
 	nvic.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvic);
 
-//-----------------------------------------------------------------------------
-	/*тактирование нужных модулей*/
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);  /*АЦП*/
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_GPIO_ADC, ENABLE);
-	//RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-//-----------------------------------------------------------------------------
+
+
 	 /* Конфигурация ПВВ. PA*/
 	 GPIO_InitStructure.GPIO_Pin = ADC_PIN_1 | ADC_PIN_2 | ADC_PIN_3|ADC_PIN_4;
 	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
@@ -54,16 +59,13 @@ void ADC_Sensor_Init(void)//
 	/* ADC1 configuration ------------------------------------------------------*/
 	 ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; //
 	 ADC_InitStructure.ADC_ScanConvMode = ENABLE; //
-	 ADC_InitStructure.ADC_ContinuousConvMode = ENABLE; //
+	 ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; //
 	 ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	 ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;//
 	 ADC_InitStructure.ADC_NbrOfChannel = /*3*/0; //
 	 ADC_Init(ADC1, &ADC_InitStructure);
 
-//	 /* ADC1 regular channel14 configuration */
-//	 ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 1, ADC_SampleTime_239Cycles5);
-//	 ADC_RegularChannelConfig(ADC1, ADC_Channel_6, 2, ADC_SampleTime_239Cycles5);
-//	 ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 3, ADC_SampleTime_239Cycles5);
+
 
 	 /* Set injected sequencer length */
 	 ADC_InjectedSequencerLengthConfig(ADC1, 4);
@@ -89,14 +91,15 @@ void ADC_Sensor_Init(void)//
 	 /* Enable JEOC interupt */
 	 ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE); // вкл. прерывание по окончанию преобразования инжектированной группы
 	 /* Enable EOC interupt */
-	 ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE); // вкл. прерывание по окончанию преобразования
+//	 ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE); // вкл. прерывание по окончанию преобразования
 	 /* Start ADC1 calibaration */
 	 ADC_StartCalibration(ADC1);
-	 /* Check the end of ADC1 calibration */
+//	 /* Check the end of ADC1 calibration */
 	 while (ADC_GetCalibrationStatus(ADC1));
 
-	 ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE); // программный запуск преобразования инжектированной группы
-	 ADC_SoftwareStartConvCmd(ADC1,ENABLE); // программный запуск преобразования регулярной группы
+//	 ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE); // программный запуск преобразования инжектированной группы
+//	 ADC_SoftwareStartConvCmd(ADC1,ENABLE); // программный запуск преобразования регулярной группы
+	 xTaskCreate(ADC_Poll_task,(signed char*)"ADC_Poll_task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
 ADC1_IRQHandler(void)
@@ -110,11 +113,25 @@ ADC1_IRQHandler(void)
         ADC_Data_4 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_4);
     }
 
-	if (ADC_GetITStatus(ADC1, ADC_IT_EOC))
+//	if (ADC_GetITStatus(ADC1, ADC_IT_EOC))
+//	{
+//        ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
+//
+//    }
+
+}
+
+static void ADC_Poll_task(void *pvParameters)
+{
+	while(1)
 	{
-        ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
-
-    }
-
+		vTaskDelay(50);
+		ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
+		vTaskDelay(50);
+		ADC_Data_1&=0xFFF;
+		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
+		 tab.indicators[0].decimal_point=0;
+		 indicators_set_num(&tab.indicators[0],ADC_Data_1);
+	}
 }
 

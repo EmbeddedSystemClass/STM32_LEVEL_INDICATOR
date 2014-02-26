@@ -32,7 +32,7 @@ static void Init_Task(void *pvParameters)
 
 	tablo_devices_init();
 	DAC_Out_Init();
-//	ADC_Sensor_Init();
+	ADC_Sensor_Init();
 //	  vTaskDelay(2000);
 
 //    Proto_Init();
