@@ -26,11 +26,11 @@ uint8_t indicators_init(void)//
 	return error;
 }
 
-void indicators_set_num(struct indicator *ind,float val)
+void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point)
 {
 	uint8_t str[16];
 
-	switch(ind->decimal_point)//положение десятичной точки
+	switch(decimal_point)//положение десятичной точки
 	{
 		case 0:
 		{

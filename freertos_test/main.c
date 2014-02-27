@@ -22,6 +22,8 @@
 //#include "buzzer.h"
 #include "adc_sensor.h"
 #include "dac.h"
+#include "menu.h"
+#include "keyboard.h"
 
 extern struct tablo tab;//
 static void Init_Task(void *pvParameters);//
@@ -33,10 +35,11 @@ static void Init_Task(void *pvParameters)
 	tablo_devices_init();
 	DAC_Out_Init();
 	ADC_Sensor_Init();
+	startMenu();
 //	  vTaskDelay(2000);
 
 //    Proto_Init();
-//    keyboard_init();
+    keyboard_init();
 //    buzzer_init();
     vTaskDelete( NULL );
 }

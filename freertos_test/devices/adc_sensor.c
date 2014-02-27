@@ -146,7 +146,7 @@ static void ADC_Poll_task(void *pvParameters)
 
 		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
 		 tab.indicators[0].decimal_point=0;
-		 indicators_set_num(&tab.indicators[0],ADC_Data_1);
+		// indicators_set_num(&tab.indicators[0],ADC_Data_1);
 	}
 }
 

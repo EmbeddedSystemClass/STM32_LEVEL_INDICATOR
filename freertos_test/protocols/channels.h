@@ -9,7 +9,7 @@
 //#include "preferences.h"
 #include "misc.h"
 //---------------------------------------
-#define CHANNEL_NUMBER	2//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define CHANNEL_NUMBER	1//
 //---------------------------------------
 #if defined (STM32F10X_HD) || defined (STM32F10X_HD_VL) || defined (STM32F10X_CL) || defined (STM32F10X_XL)
   #define FLASH_PAGE_SIZE    ((uint16_t)0x800)
@@ -77,38 +77,44 @@
 //---------------------------------------
 struct Channel
 {
-	unsigned char number ;	  	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	unsigned char number ;	  	//
 
 	union
 	{
 		struct
 		{
-			unsigned char type;		  // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-			unsigned char modific;	  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-			unsigned char state_byte_1;	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			unsigned char type;		  //
+			unsigned char modific;	  //
+			unsigned char state_byte_1;	//
 			unsigned char state_byte_2;
 		}set;
 
-		unsigned long serialize;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		unsigned long serialize;//
 	} settings;
 
-	unsigned long channel_data;		  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-	unsigned long channel_data_calibrate;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	unsigned long channel_data;		  // значение канала
+    float  channel_data_calibrate;//калиброванное значение канала
+	unsigned char string_buf[8];
+	unsigned char string_mask[8];
+	unsigned char blink;
 
 	union
-	{
-		struct
 		{
-			unsigned char calibrate;//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			struct
+			{
+				unsigned long  adc_hi;
+				float 		   cal_hi;
 
+				unsigned long  adc_lo;
+				float 		   cal_lo;
 
-			float K;//
-			float C;//y=kx+c
+				float		   ust_hi;
+				float		   ust_lo;
 
-
-		} cal;
-		unsigned long serialize[3];//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-	} calibrate;
+				unsigned char calibrate;//
+			} cal;
+			unsigned long serialize[7];//
+		} calibrate;
 
 } ;
 //---------------------------------------
