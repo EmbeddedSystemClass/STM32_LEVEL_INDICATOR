@@ -16,6 +16,7 @@
 
 #include "tablo.h"
 #include "indicator.h"
+#include "channels.h"
 
 #define ADC_CHN_1 ADC_Channel_0
 #define ADC_CHN_2 ADC_Channel_1
@@ -31,8 +32,9 @@
 #define RCC_GPIO_ADC	RCC_APB2Periph_GPIOA
 
 static void ADC_Poll_task(void *pvParameters);//
-uint16_t ADC_Data_1,ADC_Data_2,ADC_Data_3,ADC_Data_4;
+uint16_t ADC_Data_1;
 extern struct tablo tab;//
+extern struct Channel  channels[CHANNEL_NUMBER];
 void ADC_Sensor_Init(void)//
 {
 
@@ -142,7 +144,7 @@ static void ADC_Poll_task(void *pvParameters)
 			 adc_accum+=ADC_Data_1;
 		}
 //		vTaskDelay(50);
-		ADC_Data_1=adc_accum/32;
+		channels[0].channel_data=adc_accum/32;
 
 		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
 		 tab.indicators[0].decimal_point=0;

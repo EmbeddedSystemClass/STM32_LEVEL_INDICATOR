@@ -36,6 +36,14 @@ enum
 	DYN_DISPALY_ON =1
 };
 
+enum
+{
+	CAL_HI=0,
+	CAL_LO,
+	UST_HI,
+	UST_LO
+};
+
 
 uint8_t flag_menu_entry=0;//вошли в меню
 
@@ -177,25 +185,12 @@ unsigned char dispMenu(void)
 	if (selectedMenuItem == &m_s0i1) 
 	{ // мы на верхнем уровне
 		dynamic_disp= DYN_DISPALY_ON;
-//		Set_Blink_Sym(&channels[0],0);
-//		Set_Blink_Sym(&channels[4],3);
 	} 
 	else 
 	{
 		dynamic_disp=DYN_NOT_DISPLAY;
 
 		Set_Blink_Sym(&channels[0],BLINK_NONE);
-//		Set_Blink_Sym(&channels[1],BLINK_NONE);
-//		Set_Blink_Sym(&channels[2],BLINK_NONE);
-//		Set_Blink_Sym(&channels[3],BLINK_NONE);
-//		Set_Blink_Sym(&channels[4],BLINK_NONE);
-//		Set_Blink_Sym(&channels[5],BLINK_NONE);
-
-//	    for(i=0;i<CHANNEL_NUMBER;i++)
-//	    {
-//			sprintf(channels[i].string_buf,"    ");
-//		}
-		//memcpy(channels[0].string_buf,selectedMenuItem->Text,5);
 		str_to_ind(&tab.indicators[0],selectedMenuItem->Text);
 	}
 	enter_flag=0;
@@ -288,32 +283,32 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 	{
 		case MENU_SET_BRIGHTNESS:
 		{	
-			SetBrightnessKey(key);
+			//SetBrightnessKey(key);
 		}
 		break;
 
 		
 		case MENU_CHN1_CAL_HI:
 		{
-			//CalibrationKey(key,0,CAL_HI);
+			CalibrationKey(key,0,CAL_HI);
 		}
 		break; 
 
 		case MENU_CHN1_CAL_LO:
 		{
-			//CalibrationKey(key,0,CAL_LO);
+			CalibrationKey(key,0,CAL_LO);
 		}
 		break; 
 
 		case MENU_CHN1_UST_HI:
 		{
-			//CalibrationKey(key,0,UST_HI);
+			CalibrationKey(key,0,UST_HI);
 		}
 		break; 
 
 		case MENU_CHN1_UST_LO:
 		{
-			//CalibrationKey(key,0,UST_LO);
+			CalibrationKey(key,0,UST_LO);
 		}
 		break; 
 
@@ -450,7 +445,7 @@ unsigned char startMenu(void)
 	selectedMenuItem = &m_s0i1;
 
 	dispMenu();
-//	xTaskCreate(DisplayProcess,(signed char*)"DisplayProcess",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(DisplayProcess,(signed char*)"DisplayProcess",256,NULL, tskIDLE_PRIORITY + 1, NULL);
     Set_Blink_Sym(&channels[0],BLINK_NONE);
 
 	//	Set_Signal(SIGNAL_OFF);
@@ -518,139 +513,143 @@ void SetBrightnessScreen(void)
 
 
 #define CAL_ENTER_FIELD	0
+
 //-------------------------------------------------------
 void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 {
-//		float value;
-//		static unsigned char  current_char=0;
-//		switch(key)
-//		{
-//			case 'E'://enter
-//			{
-//				if(!enter_flag)
-//				{
-//					current_char=0;
-//
-//					switch(type)
-//					{
-//						case CAL_HI:
-//						{
-//							value=channels[channel].calibrate.cal.cal_hi;
-//						}
-//						break;
-//
-//						case CAL_LO:
-//						{
-//							value=channels[channel].calibrate.cal.cal_lo;
-//						}
-//						break;
-//
-//						case UST_HI:
-//						{
-//							value=channels[channel].calibrate.cal.ust_hi;
-//						}
-//						break;
-//
-//						case UST_LO:
-//						{
-//							value=channels[channel].calibrate.cal.ust_lo;
-//						}
-//						break;
-//					}
-//
-////				  if((_chkfloat_ (value)==0)&&(value>=0.00)&&(value<=9.99))
-////				  {
-////
-////					   sprintf(channels[CAL_ENTER_FIELD].string_buf,"%3.2f",value);
-////				  }
-////				  else
-////				  {
-////					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0.00");
-////				  }
-//
-//				  enter_flag=1;
+		float value;
+		static unsigned char  current_char=0;
+		switch(key)
+		{
+			case 'E'://enter
+			{
+				if(!enter_flag)
+				{
+					current_char=0;
+
+					switch(type)
+					{
+						case CAL_HI:
+						{
+							value=channels[channel].calibrate.cal.cal_hi;
+						}
+						break;
+
+						case CAL_LO:
+						{
+							value=channels[channel].calibrate.cal.cal_lo;
+						}
+						break;
+
+						case UST_HI:
+						{
+							value=channels[channel].calibrate.cal.ust_hi;
+						}
+						break;
+
+						case UST_LO:
+						{
+							value=channels[channel].calibrate.cal.ust_lo;
+						}
+						break;
+					}
+
+				  if(/*(_chkfloat_ (value)==0)&&*/(value>=0.00)&&(value<=9.99))
+				  {
+					  value=9.999;
+					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"%4.3f",value);
+				  }
+				  else
+				  {
+					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0.000");
+				  }
+				  str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
+				//	str_to_ind(&tab.indicators[0],"CELL");
+
+				  enter_flag=1;
 //				  Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
-//			    }
-//				else
-//				{
-////					  sscanf(channels[CAL_ENTER_FIELD].string_buf,"%f",&value);
-////				   	  if((_chkfloat_ (value)==0)&&(value>=0.00)&&(value<=9.99))
-////					  {
-////							switch(type)
-////							{
-////								case CAL_HI:
-////								{
-////									channels[channel].calibrate.cal.cal_hi=value;
-////									//сохранить параметр в eeprom
-////								}
-////								break;
-////
-////								case CAL_LO:
-////								{
-////									channels[channel].calibrate.cal.cal_lo=value;
-////								}
-////								break;
-////
-////								case UST_HI:
-////								{
-////									channels[channel].calibrate.cal.ust_hi=value;
-////								}
-////								break;
-////
-////								case UST_LO:
-////								{
-////									channels[channel].calibrate.cal.ust_lo=value;
-////								}
-////								break;
-////							}
-////							SetCalibration(channel,type);
-////					 }
-//
-//					enter_flag=0;
-//				    flag_menu_entry=0;
-//					dispMenu();
-//				}
-//			}
-//			break;
-//
-////			case 'Q'//quit
-////			{
-////			}
-////			break;
-//
-//			case '>'://shift
+			    }
+				else
+				{
+					  //sscanf(channels[CAL_ENTER_FIELD].string_buf,"%f",&value);
+				   	  if(/*(_chkfloat_ (value)==0)&&*/(value>=0.00)&&(value<=9.99))
+					  {
+							switch(type)
+							{
+								case CAL_HI:
+								{
+									channels[channel].calibrate.cal.cal_hi=value;
+									//сохранить параметр в eeprom
+								}
+								break;
+
+								case CAL_LO:
+								{
+									channels[channel].calibrate.cal.cal_lo=value;
+								}
+								break;
+
+								case UST_HI:
+								{
+									channels[channel].calibrate.cal.ust_hi=value;
+								}
+								break;
+
+								case UST_LO:
+								{
+									channels[channel].calibrate.cal.ust_lo=value;
+								}
+								break;
+							}
+							//SetCalibration(channel,type);
+					 }
+
+					enter_flag=0;
+				    flag_menu_entry=0;
+					dispMenu();
+				}
+			}
+			break;
+
+//			case 'Q'//quit
 //			{
-////			 	current_char++;
-////				if(current_char==1)
-////				{
-////					current_char=2;
-////				}
-////
-////				if(current_char>3)
-////				{
-////					current_char=0;
-////				}
-////
-////				Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
 //			}
 //			break;
-//
-//			case '+'://increment
-//			{
-////				channels[CAL_ENTER_FIELD].string_buf[current_char]++;
-////				if((channels[CAL_ENTER_FIELD].string_buf[current_char]<'0')||(channels[CAL_ENTER_FIELD].string_buf[current_char]>'9'))
-////				{
-////					channels[CAL_ENTER_FIELD].string_buf[current_char]='0';
-////				}
-////				channels[CAL_ENTER_FIELD].string_buf[1]='.';
-//			}
-//			break;
-//		}
-//
-//		if(enter_flag)
-//		{
-////			CalibrationScreen(channel);
-//		}
+
+			case '>'://shift
+			{
+			 	current_char++;
+				if(current_char==1)
+				{
+					current_char=2;
+				}
+
+				if(current_char>4)
+				{
+					current_char=0;
+				}
+
+//				Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
+			}
+			break;
+
+			case '+'://increment
+			{
+				channels[CAL_ENTER_FIELD].string_buf[current_char]++;
+				if((channels[CAL_ENTER_FIELD].string_buf[current_char]<'0')||(channels[CAL_ENTER_FIELD].string_buf[current_char]>'9'))
+				{
+					channels[CAL_ENTER_FIELD].string_buf[current_char]='0';
+				}
+				channels[CAL_ENTER_FIELD].string_buf[1]='.';
+				str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
+			}
+			break;
+		}
+
+		if(enter_flag)
+		{
+//			CalibrationScreen(channel);
+		}
 }
 
 void CalibrationScreen(unsigned char channel)//экран калибровки канала
@@ -659,37 +658,27 @@ void CalibrationScreen(unsigned char channel)//экран калибровки канала
 		  menuItem   * tempMenu;
 
 		dynamic_disp=DYN_NOT_DISPLAY;
-//	    for(i=3;i<CHANNEL_NUMBER;i++)
-//	    {
-//			sprintf(channels[i].string_buf,"    ");
-////			memset(channels[i].string_buf,' ',3);
-////			channels[i].string_buf[3]=0;
-//		}
-//		tempMenu= selectedMenuItem->Parent;
-//		memcpy(channels[0].string_buf,tempMenu->Text,5);
-//		memcpy(channels[1].string_buf,selectedMenuItem->Text,5);
-	//	sprintf(channels[0].string_buf," % 3bu",brightness);
 }
 
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position)
 {
-//		if(sym_position<4)
-//		{
-//				sprintf(chn->string_mask,"XXXX");
-//				chn->string_mask[sym_position]=' ';
-//		}
-//		else
-//		{
-//			if(sym_position==0xF)
-//			{
-//				sprintf(chn->string_mask,"    ");
-//			}
-//			else
-//			{
-//				sprintf(chn->string_mask,"XXXX");
-//			}
-//		}
+		if(sym_position<4)
+		{
+				sprintf(chn->string_mask,"XXXXX");
+				chn->string_mask[sym_position]=' ';
+		}
+		else
+		{
+			if(sym_position==0xF)
+			{
+				sprintf(chn->string_mask,"     ");
+			}
+			else
+			{
+				sprintf(chn->string_mask,"XXXXX");
+			}
+		}
 }
 //--------------------------------------------------------
 void Set_Signal(unsigned char type)
@@ -713,6 +702,7 @@ static void DisplayProcess(void *pvParameters)
  //  wdt_count[Display_Proc].process_state=RUN;
    if(selectedMenuItem == &m_s0i1)//первый дисплей
    {
+	   indicators_set_num(&tab.indicators[0],channels[0].channel_data,0);
 //	   for(i=0;i<CHANNEL_NUMBER;i++)
 //	   {
 //			  value=GetCalibrateVal(i,channels[i].channel_data);
@@ -759,7 +749,7 @@ static void DisplayProcess(void *pvParameters)
 //		Set_Signal(SIGNAL_OFF);
 	}
 
-//	Tablo_Output_Frame();
+
 //	wdt_count[Display_Proc].count++;
   }
 
