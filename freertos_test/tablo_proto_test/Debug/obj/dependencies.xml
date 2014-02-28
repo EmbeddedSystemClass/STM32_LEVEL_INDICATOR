@@ -35,8 +35,6 @@
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
       </source>
-      <source file="..\..\..\menu\menu.h" lastModified="1447271fd0b">
-      </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
@@ -559,8 +557,6 @@
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
       </source>
-      <source file="..\..\..\menu\menu.h" lastModified="1447271fd0b">
-      </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
@@ -761,7 +757,26 @@
       </source>
       <source file="..\..\..\cmsis\core_cm3.c" lastModified="14454093d2b">
       </source>
-      <source file="..\..\..\menu\menu.h" lastModified="1447271fd0b">
+      <source file="..\..\..\menu\menu.h" lastModified="14477f485a9">
+      </source>
+      <source file="..\..\..\menu\menu.c" lastModified="144782d844c">
+         <include file="..\..\..\menu\menu.h"/>
+         <include file="..\..\..\devices\keyboard.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_tim.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_adc.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_dac.h"/>
+         <include file="..\..\..\stm_lib\inc\misc.h"/>
+         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
+         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
+         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\queue.h"/>
+         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\semphr.h"/>
+         <include file="..\..\..\devices\tablo.h"/>
+         <include file="..\..\..\devices\indicator.h"/>
+         <include file="..\..\..\protocols\channels.h"/>
+         <include file="..\..\..\string_utils\string_utils.h"/>
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\ARM_CM3\port.c" lastModified="13438131d12">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
@@ -773,21 +788,6 @@
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\include\semphr.h" lastModified="14453fe08a3">
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\queue.h"/>
-      </source>
-      <source file="..\..\..\devices\keyboard.c" lastModified="14477674b3e">
-         <include file="..\..\..\devices\keyboard.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
-         <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
-         <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
-         <include file="..\..\..\stm_lib\inc\stm32f10x_tim.h"/>
-         <include file="..\..\..\stm_lib\inc\stm32f10x_spi.h"/>
-         <include file="..\..\..\stm_lib\inc\stm32f10x_dma.h"/>
-         <include file="..\..\..\stm_lib\inc\misc.h"/>
-         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\FreeRTOS.h"/>
-         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
-         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\queue.h"/>
-         <include file="..\..\..\FreeRTOSV7.1.0\Source\include\semphr.h"/>
-         <include file="..\..\..\menu\menu.h"/>
       </source>
       <source file="..\..\..\stm_lib\inc\stm32f10x_spi.h" lastModified="144540a0be5">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>

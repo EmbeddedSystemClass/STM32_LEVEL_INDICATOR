@@ -14,6 +14,8 @@
 #include "semphr.h"
 #include "menu.h"
 
+xQueueHandle xKeyboardQueue;
+
 uint8_t keyboard_poll(void);
 
 void keyboard_init(void)
@@ -29,6 +31,8 @@ void keyboard_init(void)
     GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_IPU;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
 
+    xKeyboardQueue = xQueueCreate( 1, sizeof( uint8_t ) );
+
 //    GPIO_InitStructure.GPIO_Pin   = KEY_Y1|KEY_Y2|KEY_Y3;
 //    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 //    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_IPD;
@@ -42,7 +46,7 @@ void keyboard_init(void)
 //    GPIO_WriteBit(PORT_Y, KEY_Y2,0);
 //    GPIO_WriteBit(PORT_Y, KEY_Y3,0);
 
-    xTaskCreate(keyboard_task,(signed char*)"KEYBOARD",128,NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(keyboard_task,(signed char*)"KEYBOARD",64,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 void keyboard_task(void *pvParameters )
 {
@@ -61,9 +65,10 @@ void keyboard_task(void *pvParameters )
 
 			if(key_1!=0)
 			{
-				menuKey(key_code);
+				xQueueSendToBack( xKeyboardQueue, &key_code, 0 );
 			}
 		}
+		taskYIELD();
 	}
 }
 

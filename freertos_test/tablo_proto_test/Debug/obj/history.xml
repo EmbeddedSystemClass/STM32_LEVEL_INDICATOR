@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="14477c68b94">
-         <source file="..\..\..\menu\menu.c" lastModified="14477c6681e"/>
+      <target file="menu.o" lastModified="144782d8a09">
+         <source file="..\..\..\menu\menu.c" lastModified="144782d7894"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
@@ -78,8 +78,8 @@
       <target file="channels.o" lastModified="1447737c569">
          <source file="..\..\..\protocols\channels.c" lastModified="1447273861c"/>
       </target>
-      <target file="keyboard.o" lastModified="144776753d9">
-         <source file="..\..\..\devices\keyboard.c" lastModified="14477674b3e"/>
+      <target file="keyboard.o" lastModified="144782e6c5a">
+         <source file="..\..\..\devices\keyboard.c" lastModified="144782e6381"/>
       </target>
       <target file="spi_bus.o" lastModified="1447766f4e0">
          <source file="..\..\..\devices\spi_bus.c" lastModified="1447766ed20"/>
@@ -96,11 +96,11 @@
       <target file="tablo.o" lastModified="1447737acb0">
          <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
+      <target file="main.o" lastModified="14477f5bee4">
+         <source file="..\..\..\main.c" lastModified="14472953864"/>
+      </target>
       <target file="string_utils.o" lastModified="144779c61e1">
          <source file="..\..\..\string_utils\string_utils.c" lastModified="1447798f02a"/>
-      </target>
-      <target file="main.o" lastModified="1447737aba7">
-         <source file="..\..\..\main.c" lastModified="14472953864"/>
       </target>
       <target file="heap_1.o" lastModified="1447737c837">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\portable\MemMang\heap_1.c" lastModified="14453fe08b3"/>
