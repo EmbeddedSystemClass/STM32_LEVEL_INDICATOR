@@ -33,10 +33,6 @@ uint8_t spi_buses_init(void)//
 	 {
 		//
 	 }
-
-	 //test
-//	 tab.indicators[0].decimal_point=0;
-//	 indicators_set_num(&tab.indicators[0],1000);
 	return error;
 }
 

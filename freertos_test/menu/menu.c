@@ -290,6 +290,7 @@ unsigned char startMenu(void)
     Set_Blink_Sym(&channels[0],BLINK_NONE);
 
 	//	Set_Signal(SIGNAL_OFF);
+    tab.indicators[0].decimal_point=2;
 	return 0;
 }
 //-------------------------------------------------------

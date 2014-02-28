@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="144786c8f75">
-         <source file="..\..\..\menu\menu.c" lastModified="144786c7b80"/>
+      <target file="menu.o" lastModified="1447875ed1a">
+         <source file="..\..\..\menu\menu.c" lastModified="1447875da7c"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
@@ -72,8 +72,8 @@
       <target file="stm32f10x_adc.o" lastModified="1447737b0f6">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
-      <target file="adc_sensor.o" lastModified="144784c5788">
-         <source file="..\..\..\devices\adc_sensor.c" lastModified="14472bd1a89"/>
+      <target file="adc_sensor.o" lastModified="1447879d6fe">
+         <source file="..\..\..\devices\adc_sensor.c" lastModified="1447879cc02"/>
       </target>
       <target file="channels.o" lastModified="1447737c569">
          <source file="..\..\..\protocols\channels.c" lastModified="1447273861c"/>
@@ -81,8 +81,8 @@
       <target file="keyboard.o" lastModified="14478358b4a">
          <source file="..\..\..\devices\keyboard.c" lastModified="144782f2aa9"/>
       </target>
-      <target file="spi_bus.o" lastModified="144784c63cd">
-         <source file="..\..\..\devices\spi_bus.c" lastModified="1447766ed20"/>
+      <target file="spi_bus.o" lastModified="1447879d9fc">
+         <source file="..\..\..\devices\spi_bus.c" lastModified="1447879cde6"/>
       </target>
       <target file="printf.o" lastModified="1447737ad8b">
          <source file="..\..\..\stdio\printf.c" lastModified="14473771a90"/>
@@ -96,8 +96,8 @@
       <target file="tablo.o" lastModified="144784c59da">
          <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
-      <target file="main.o" lastModified="144784c594d">
-         <source file="..\..\..\main.c" lastModified="14472953864"/>
+      <target file="main.o" lastModified="1447879d960">
+         <source file="..\..\..\main.c" lastModified="1447879818b"/>
       </target>
       <target file="string_utils.o" lastModified="144779c61e1">
          <source file="..\..\..\string_utils\string_utils.c" lastModified="1447798f02a"/>

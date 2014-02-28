@@ -35,11 +35,12 @@ static void Init_Task(void *pvParameters)
 	tablo_devices_init();
 	DAC_Out_Init();
 	ADC_Sensor_Init();
+    keyboard_init();
 	startMenu();
 //	  vTaskDelay(2000);
 
 //    Proto_Init();
-    keyboard_init();
+
 //    buzzer_init();
     vTaskDelete( NULL );
 }
