@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="144782d8a09">
-         <source file="..\..\..\menu\menu.c" lastModified="144782d7894"/>
+      <target file="menu.o" lastModified="144786c8f75">
+         <source file="..\..\..\menu\menu.c" lastModified="144786c7b80"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
@@ -33,8 +33,8 @@
       <target file="timers.o" lastModified="1447737ac14">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\timers.c" lastModified="14453fe08c2"/>
       </target>
-      <target file="indicator.o" lastModified="14477b7144a">
-         <source file="..\..\..\devices\indicator.c" lastModified="14477a5927a"/>
+      <target file="indicator.o" lastModified="1447868eccb">
+         <source file="..\..\..\devices\indicator.c" lastModified="1447868e0c5"/>
       </target>
       <target file="tasks.o" lastModified="1447737b02b">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\tasks.c" lastModified="14453fe08c2"/>
@@ -72,16 +72,16 @@
       <target file="stm32f10x_adc.o" lastModified="1447737b0f6">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
-      <target file="adc_sensor.o" lastModified="1447737a790">
+      <target file="adc_sensor.o" lastModified="144784c5788">
          <source file="..\..\..\devices\adc_sensor.c" lastModified="14472bd1a89"/>
       </target>
       <target file="channels.o" lastModified="1447737c569">
          <source file="..\..\..\protocols\channels.c" lastModified="1447273861c"/>
       </target>
-      <target file="keyboard.o" lastModified="144782e6c5a">
-         <source file="..\..\..\devices\keyboard.c" lastModified="144782e6381"/>
+      <target file="keyboard.o" lastModified="14478358b4a">
+         <source file="..\..\..\devices\keyboard.c" lastModified="144782f2aa9"/>
       </target>
-      <target file="spi_bus.o" lastModified="1447766f4e0">
+      <target file="spi_bus.o" lastModified="144784c63cd">
          <source file="..\..\..\devices\spi_bus.c" lastModified="1447766ed20"/>
       </target>
       <target file="printf.o" lastModified="1447737ad8b">
@@ -93,10 +93,10 @@
       <target file="dac.o" lastModified="1447737aef3">
          <source file="..\..\..\devices\dac.c" lastModified="1446df1632f"/>
       </target>
-      <target file="tablo.o" lastModified="1447737acb0">
+      <target file="tablo.o" lastModified="144784c59da">
          <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
       </target>
-      <target file="main.o" lastModified="14477f5bee4">
+      <target file="main.o" lastModified="144784c594d">
          <source file="..\..\..\main.c" lastModified="14472953864"/>
       </target>
       <target file="string_utils.o" lastModified="144779c61e1">

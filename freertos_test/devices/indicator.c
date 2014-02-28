@@ -28,78 +28,11 @@ uint8_t indicators_init(void)//
 	return error;
 }
 
-void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point)
+void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point, uint8_t *mask)
 {
 	uint8_t str[16];
 
-//	switch(decimal_point)//положение десятичной точки
-//	{
-//		case 0:
-//		{
-//			if(val<0)
-//			{
-//				val=0;
-//			}
-//
-//			if(val>9999)
-//			{
-//				val=9999;
-//			}
-//			sprintf(str,"%4d",(unsigned int)val);
-//		}
-//		break;
-//
-//		case 1:
-//		{
-//			if(val<0)
-//			{
-//				val=0;
-//			}
-//
-//			if(val>999.9)
-//			{
-//				val=999.9;
-//			}
-//			sprintf(str,"%3d.%1d",(unsigned int)val,(unsigned int)(val*10)%10);
-//		}
-//		break;
-//
-//		case 2:
-//		{
-//			if(val<0)
-//			{
-//				val=0;
-//			}
-//
-//			if(val>99.99)
-//			{
-//				val=99.99;
-//			}
-//			sprintf(str,"%2d.%2d",(unsigned int)val,(unsigned int)(val*100)%100);
-//		}
-//		break;
-//
-//		case 3:
-//		{
-//			if(val<0)
-//			{
-//				val=0;
-//			}
-//
-//			if(val>9.999)
-//			{
-//				val=9.999;
-//			}
-//			sprintf(str,"%1d.%3d",(unsigned int)val,(unsigned int)(val*1000)%1000);
-//		}
-//		break;
-//
-//		default :
-//		{
-//
-//		}
-//		break;
-//	}
+
 	if(float_to_string(val,str,decimal_point,' ')==1)
 	{
 		return;//NaN
@@ -107,19 +40,32 @@ void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point)
 
 	if( xSemaphoreTake( xSPI_Buf_Mutex, portMAX_DELAY ) == pdTRUE )
 	{
-		str_to_ind(ind,str);
+		str_to_ind(ind,str,mask);
 		xSemaphoreGive( xSPI_Buf_Mutex );
 	}
 	return;
 }
 
-uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
+uint8_t str_to_ind(struct indicator *ind,uint8_t *str, uint8_t *mask)
 {
     uint8_t i=0,j=0;
     uint8_t buf_count=0;//
     uint8_t str_len=0;
+    uint8_t str_temp[16]={0};
 
     str_len=strlen(str);
+
+    for(i=0;i<str_len;i++)
+    {
+    	if(mask[i]==' ')
+    	{
+    		str_temp[i]=' ';
+    	}
+    	else
+    	{
+    		str_temp[i]=str[i];
+		}
+    }
 
     	tab.buses[ind->bus].bus_buf[0][ind->number_in_bus]=ind->shutdown;
     	tab.buses[ind->bus].bus_buf[1][ind->number_in_bus]=ind->display_test;
@@ -139,15 +85,15 @@ uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
 
         for(i=0;i<str_len;i++)//
         {
-            if((str[i]>=0x30)&&(str[i]<=0x39))//цифры
+            if((str_temp[i]>=0x30)&&(str_temp[i]<=0x39))//цифры
             {
-            	tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]=(Sym_table[1][(str[i]-0x30)])|(0x100*((buf_count-5)+1));
+            	tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]=(Sym_table[1][(str_temp[i]-0x30)])|(0x100*((buf_count-5)+1));
                 buf_count++;
 
                 continue;
             }
 
-            if(str[i]=='.')
+            if(str_temp[i]=='.')
             {
                 if(i==0)
                 {
@@ -157,7 +103,7 @@ uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
 
             	if(i>0)
                 {
-                	if(str[i-1]=='.')
+                	if(str_temp[i-1]=='.')
                 	{
                     	tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]|=0x80;
                     	buf_count++;
@@ -172,7 +118,7 @@ uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
 
             for(j=10;j<SYM_TAB_LEN;j++)//
             {
-               if(str[i]==Sym_table[0][j])//
+               if(str_temp[i]==Sym_table[0][j])//
                {
             	    tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]=(Sym_table[1][j])|(0x100*((buf_count-5)+1));//
                     buf_count++;

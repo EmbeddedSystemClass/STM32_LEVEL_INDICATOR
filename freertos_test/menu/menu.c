@@ -159,7 +159,7 @@ unsigned char dispMenu(void)
 		dynamic_disp=DYN_NOT_DISPLAY;
 
 		Set_Blink_Sym(&channels[0],BLINK_NONE);
-		str_to_ind(&tab.indicators[0],selectedMenuItem->Text);
+		str_to_ind(&tab.indicators[0],selectedMenuItem->Text,"XXXXX");
 	}
 	enter_flag=0;
 	return (1);
@@ -403,10 +403,10 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 				  {
 					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0.000");
 				  }
-				  str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
+				  str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf,"XXXXX");
 
 				  enter_flag=1;
-//				  Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
+				  Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
 			    }
 				else
 				{
@@ -518,7 +518,7 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 					}
 					break;
 				}
-//				Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
+				Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
 			}
 			break;
 
@@ -530,7 +530,7 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 					channels[CAL_ENTER_FIELD].string_buf[current_char]='0';
 				}
 				//channels[CAL_ENTER_FIELD].string_buf[1]='.';
-				str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
+				//str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf,"XXXXX");
 			}
 			break;
 		}
@@ -581,32 +581,50 @@ static void DisplayProcess(void *pvParameters)
   static uint8_t i=0;
   static float value;
   uint8_t key;
-
+  uint8_t blink_flag=0;
+  uint8_t blink_count=0;
 
   while(1) 
   {
 //	wdt_count[Display_Proc].process_state=IDLE;  
 
-	  vTaskDelay(50);
-	if( uxQueueMessagesWaiting(xKeyboardQueue) != 0 )
+	vTaskDelay(50);
+	if( uxQueueMessagesWaiting(xKeyboardQueue) != 0 )//keyboard poll
 	{
 		xQueueReceive( xKeyboardQueue, &key, 0 );
 		menuKey(key);
 	}
-	 
- //  wdt_count[Display_Proc].process_state=RUN;
-//   if(selectedMenuItem == &m_s0i1)//первый дисплей
-//   {
-//	   indicators_set_num(&tab.indicators[0],channels[0].channel_data,0);
-//
-//	}
-//	else
-//	{
-////		Set_Signal(SIGNAL_OFF);
-//	}
 
+	if(blink_count<2)
+	{
+		blink_count++;
+	}
+	else
+	{
+		blink_count=0;
+		blink_flag^=1;
+	}
+
+ //  wdt_count[Display_Proc].process_state=RUN;
+   if(selectedMenuItem == &m_s0i1)//main screen
+   {
+	   indicators_set_num(&tab.indicators[0],channels[0].channel_data,0,"XXXXX");
+   }
+
+   if(((selectedMenuItem == &m_s3i1)||(selectedMenuItem == &m_s3i2)||(selectedMenuItem == &m_s3i3)||(selectedMenuItem == &m_s3i4)||(selectedMenuItem == &m_s3i5))&&enter_flag)//settings screen
+   {
+	   if(blink_flag)
+	   {
+		   str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf,channels[0].string_mask);
+	   }
+	   else
+	   {
+		   str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf,"XXXXX");
+	   }
+
+   }
 
 //	wdt_count[Display_Proc].count++;
+	taskYIELD();
   }
-
  }
