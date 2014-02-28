@@ -42,7 +42,7 @@ void keyboard_init(void)
 //    GPIO_WriteBit(PORT_Y, KEY_Y2,0);
 //    GPIO_WriteBit(PORT_Y, KEY_Y3,0);
 
-    xTaskCreate(keyboard_task,(signed char*)"KEYBOARD",64,NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(keyboard_task,(signed char*)"KEYBOARD",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 void keyboard_task(void *pvParameters )
 {

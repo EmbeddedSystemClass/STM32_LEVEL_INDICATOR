@@ -2,6 +2,7 @@
 #include "menu.h"
 #include "keyboard.h"
 #include <stdio.h>
+#include <math.h>
 
 #include <string.h>
 #include <stm32f10x.h>
@@ -20,6 +21,8 @@
 #include "tablo.h"
 #include "indicator.h"
 #include "channels.h"
+
+#include "string_utils.h"
 
 extern struct tablo tab;//
 
@@ -89,48 +92,53 @@ menuItem        Null_Menu = {(void*)0, (void*)0, (void*)0, (void*)0, 0, {0x00}};
 MAKE_MENU(m_s0i1,  NULL_ENTRY,NULL_ENTRY,  NULL_ENTRY, m_s1i1,       0, 	"DATA SCREEN");
 
 
-MAKE_MENU(m_s1i1,  m_s1i2,    NULL_ENTRY,  m_s0i1,     m_s2i1,       0, 					" 5Et");
+MAKE_MENU(m_s1i1,  m_s1i2,    NULL_ENTRY,  m_s0i1,     m_s3i1,       0, 					" 5Et");
 MAKE_MENU(m_s1i2,  NULL_ENTRY,m_s1i1,      m_s0i1,     NULL_ENTRY,   MENU_SET_BRIGHTNESS,   " brI");
 
 // подменю Настройка каналов
-MAKE_MENU(m_s2i1,  m_s2i2,    NULL_ENTRY,  m_s1i1,     m_s3i1,       /*MENU_CHN1_SET*/0, 		" C_1");
-MAKE_MENU(m_s2i2,  m_s2i3,    m_s2i1,      m_s1i1,     m_s4i1,   	 /*MENU_CHN2_SET*/0, 		" C_2");
-MAKE_MENU(m_s2i3,  m_s2i4,	  m_s2i2,      m_s1i1,     m_s5i1,   	 /*MENU_CHN3_SET*/0, 		" C_3");
-MAKE_MENU(m_s2i4,  m_s2i5,	  m_s2i3,      m_s1i1,     m_s6i1,   	 /*MENU_CHN4_SET*/0, 		" C_4");
-MAKE_MENU(m_s2i5,  m_s2i6,	  m_s2i4,      m_s1i1,     m_s7i1,   	 /*MENU_CHN5_SET*/0, 		" C_5");
-MAKE_MENU(m_s2i6,  NULL_ENTRY,m_s2i5,      m_s1i1,     m_s8i1,   	 /*MENU_CHN6_SET*/0, 		" C_6");
-
+//MAKE_MENU(m_s2i1,  m_s2i2,    NULL_ENTRY,  m_s1i1,     m_s3i1,       /*MENU_CHN1_SET*/0, 		" C_1");
+//MAKE_MENU(m_s2i2,  m_s2i3,    m_s2i1,      m_s1i1,     m_s4i1,   	 /*MENU_CHN2_SET*/0, 		" C_2");
+//MAKE_MENU(m_s2i3,  m_s2i4,	  m_s2i2,      m_s1i1,     m_s5i1,   	 /*MENU_CHN3_SET*/0, 		" C_3");
+//MAKE_MENU(m_s2i4,  m_s2i5,	  m_s2i3,      m_s1i1,     m_s6i1,   	 /*MENU_CHN4_SET*/0, 		" C_4");
+//MAKE_MENU(m_s2i5,  m_s2i6,	  m_s2i4,      m_s1i1,     m_s7i1,   	 /*MENU_CHN5_SET*/0, 		" C_5");
+//MAKE_MENU(m_s2i6,  NULL_ENTRY,m_s2i5,      m_s1i1,     m_s8i1,   	 /*MENU_CHN6_SET*/0, 		" C_6");
 
 // Настройка канала	 1
-MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s2i1,     NULL_ENTRY,   MENU_CHN1_CAL_HI, 		" ChI");
-MAKE_MENU(m_s3i2,  m_s3i3,    m_s3i1,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_CAL_LO, 		" CLO");
-MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		" UhI");
-MAKE_MENU(m_s3i4,  NULL_ENTRY,m_s3i3,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		" ULO");
-// Настройка канала	 2
-MAKE_MENU(m_s4i1,  m_s4i2,    NULL_ENTRY,  m_s2i2,     NULL_ENTRY,   MENU_CHN2_CAL_HI, 		" ChI");
-MAKE_MENU(m_s4i2,  m_s4i3,    m_s4i1,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_CAL_LO, 		" CLO");
-MAKE_MENU(m_s4i3,  m_s4i4,	  m_s4i2,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_UST_HI, 		" UhI");
-MAKE_MENU(m_s4i4,  NULL_ENTRY,m_s4i3,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_UST_LO, 		" ULO");
-// Настройка канала	 3
-MAKE_MENU(m_s5i1,  m_s5i2,    NULL_ENTRY,  m_s2i3,     NULL_ENTRY,   MENU_CHN3_CAL_HI, 		" ChI");
-MAKE_MENU(m_s5i2,  m_s5i3,    m_s5i1,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_CAL_LO, 		" CLO");
-MAKE_MENU(m_s5i3,  m_s5i4,	  m_s5i2,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_UST_HI, 		" UhI");
-MAKE_MENU(m_s5i4,  NULL_ENTRY,m_s5i3,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_UST_LO, 		" ULO");
-// Настройка канала	 4
-MAKE_MENU(m_s6i1,  m_s6i2,    NULL_ENTRY,  m_s2i4,     NULL_ENTRY,   MENU_CHN4_CAL_HI, 		" ChI");
-MAKE_MENU(m_s6i2,  m_s6i3,    m_s6i1,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_CAL_LO, 		" CLO");
-MAKE_MENU(m_s6i3,  m_s6i4,	  m_s6i2,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_UST_HI, 		" UhI");
-MAKE_MENU(m_s6i4,  NULL_ENTRY,m_s6i3,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_UST_LO, 		" ULO");
-// Настройка канала	 5
-MAKE_MENU(m_s7i1,  m_s7i2,    NULL_ENTRY,  m_s2i5,     NULL_ENTRY,   MENU_CHN5_CAL_HI, 		" ChI");
-MAKE_MENU(m_s7i2,  m_s7i3,    m_s7i1,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_CAL_LO, 		" CLO");
-MAKE_MENU(m_s7i3,  m_s7i4,	  m_s7i2,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_UST_HI, 		" UhI");
-MAKE_MENU(m_s7i4,  NULL_ENTRY,m_s7i3,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_UST_LO, 		" ULO");
-// Настройка канала	 6
-MAKE_MENU(m_s8i1,  m_s8i2,    NULL_ENTRY,  m_s2i6,     NULL_ENTRY,   MENU_CHN6_CAL_HI, 		" ChI");
-MAKE_MENU(m_s8i2,  m_s8i3,    m_s8i1,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_CAL_LO, 		" CLO");
-MAKE_MENU(m_s8i3,  m_s8i4,	  m_s8i2,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_UST_HI, 		" UhI");
-MAKE_MENU(m_s8i4,  NULL_ENTRY,m_s8i3,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_UST_LO, 		" ULO");
+MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_HI, 		" ChI");
+MAKE_MENU(m_s3i2,  m_s3i3,    m_s3i1,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_LO, 		" CLO");
+MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		" UhI");
+MAKE_MENU(m_s3i4,  NULL_ENTRY,m_s3i3,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		" ULO");
+
+//// Настройка канала	 1
+//MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s2i1,     NULL_ENTRY,   MENU_CHN1_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s3i2,  m_s3i3,    m_s3i1,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		" UhI");
+//MAKE_MENU(m_s3i4,  NULL_ENTRY,m_s3i3,      m_s2i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		" ULO");
+//// Настройка канала	 2
+//MAKE_MENU(m_s4i1,  m_s4i2,    NULL_ENTRY,  m_s2i2,     NULL_ENTRY,   MENU_CHN2_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s4i2,  m_s4i3,    m_s4i1,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s4i3,  m_s4i4,	  m_s4i2,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_UST_HI, 		" UhI");
+//MAKE_MENU(m_s4i4,  NULL_ENTRY,m_s4i3,      m_s2i2,     NULL_ENTRY,   MENU_CHN2_UST_LO, 		" ULO");
+//// Настройка канала	 3
+//MAKE_MENU(m_s5i1,  m_s5i2,    NULL_ENTRY,  m_s2i3,     NULL_ENTRY,   MENU_CHN3_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s5i2,  m_s5i3,    m_s5i1,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s5i3,  m_s5i4,	  m_s5i2,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_UST_HI, 		" UhI");
+//MAKE_MENU(m_s5i4,  NULL_ENTRY,m_s5i3,      m_s2i3,     NULL_ENTRY,   MENU_CHN3_UST_LO, 		" ULO");
+//// Настройка канала	 4
+//MAKE_MENU(m_s6i1,  m_s6i2,    NULL_ENTRY,  m_s2i4,     NULL_ENTRY,   MENU_CHN4_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s6i2,  m_s6i3,    m_s6i1,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s6i3,  m_s6i4,	  m_s6i2,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_UST_HI, 		" UhI");
+//MAKE_MENU(m_s6i4,  NULL_ENTRY,m_s6i3,      m_s2i4,     NULL_ENTRY,   MENU_CHN4_UST_LO, 		" ULO");
+//// Настройка канала	 5
+//MAKE_MENU(m_s7i1,  m_s7i2,    NULL_ENTRY,  m_s2i5,     NULL_ENTRY,   MENU_CHN5_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s7i2,  m_s7i3,    m_s7i1,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s7i3,  m_s7i4,	  m_s7i2,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_UST_HI, 		" UhI");
+//MAKE_MENU(m_s7i4,  NULL_ENTRY,m_s7i3,      m_s2i5,     NULL_ENTRY,   MENU_CHN5_UST_LO, 		" ULO");
+//// Настройка канала	 6
+//MAKE_MENU(m_s8i1,  m_s8i2,    NULL_ENTRY,  m_s2i6,     NULL_ENTRY,   MENU_CHN6_CAL_HI, 		" ChI");
+//MAKE_MENU(m_s8i2,  m_s8i3,    m_s8i1,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_CAL_LO, 		" CLO");
+//MAKE_MENU(m_s8i3,  m_s8i4,	  m_s8i2,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_UST_HI, 		" UhI");
+//MAKE_MENU(m_s8i4,  NULL_ENTRY,m_s8i3,      m_s2i6,     NULL_ENTRY,   MENU_CHN6_UST_LO, 		" ULO");
 
 
 enum
@@ -274,7 +282,6 @@ unsigned char menuKey(unsigned char key)
 	return (1);
 }
 //-----------------------------------------------------
-
 unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обработка меню
 {
 	flag_menu_entry=1;
@@ -311,131 +318,6 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 			CalibrationKey(key,0,UST_LO);
 		}
 		break; 
-
-		
-		
-//		case MENU_CHN2_CAL_HI:
-//		{
-//			CalibrationKey(key,1,CAL_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN2_CAL_LO:
-//		{
-//			CalibrationKey(key,1,CAL_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN2_UST_HI:
-//		{
-//			CalibrationKey(key,1,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN2_UST_LO:
-//		{
-//			CalibrationKey(key,1,UST_LO);
-//		}
-//		break;
-//
-//
-//		case MENU_CHN3_CAL_HI:
-//		{
-//			CalibrationKey(key,2,CAL_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN3_CAL_LO:
-//		{
-//			CalibrationKey(key,2,CAL_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN3_UST_HI:
-//		{
-//			CalibrationKey(key,2,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN3_UST_LO:
-//		{
-//			CalibrationKey(key,2,UST_LO);
-//		}
-//		break;
-//
-//
-//		case MENU_CHN4_CAL_HI:
-//		{
-//			CalibrationKey(key,3,CAL_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN4_CAL_LO:
-//		{
-//			CalibrationKey(key,3,CAL_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN4_UST_HI:
-//		{
-//			CalibrationKey(key,3,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN4_UST_LO:
-//		{
-//			CalibrationKey(key,3,UST_LO);
-//		}
-//		break;
-//
-//
-//		case MENU_CHN5_CAL_HI:
-//		{
-//			CalibrationKey(key,4,CAL_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN5_CAL_LO:
-//		{
-//			CalibrationKey(key,4,CAL_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN5_UST_HI:
-//		{
-//			CalibrationKey(key,4,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN5_UST_LO:
-//		{
-//			CalibrationKey(key,4,UST_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN6_CAL_HI:
-//		{
-//			CalibrationKey(key,5,CAL_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN6_CAL_LO:
-//		{
-//			CalibrationKey(key,5,CAL_LO);
-//		}
-//		break;
-//
-//		case MENU_CHN6_UST_HI:
-//		{
-//			CalibrationKey(key,5,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN6_UST_LO:
-//		{
-//			CalibrationKey(key,5,UST_LO);
-//		}
-//		break;
 	}	
 	return 0;
 }
@@ -554,56 +436,54 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 						break;
 					}
 
-				  if(/*(_chkfloat_ (value)==0)&&*/(value>=0.00)&&(value<=9.99))
+				  if((isnan(value)==0)&&(value>=0.00)&&(value<=9999))
 				  {
-					  value=9.999;
-					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"%4.3f",value);
+					  float_to_string(value,channels[CAL_ENTER_FIELD].string_buf,tab.indicators[0].decimal_point,'0');
 				  }
 				  else
 				  {
 					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0.000");
 				  }
 				  str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
-				//	str_to_ind(&tab.indicators[0],"CELL");
 
 				  enter_flag=1;
 //				  Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
 			    }
 				else
 				{
-					  //sscanf(channels[CAL_ENTER_FIELD].string_buf,"%f",&value);
-				   	  if(/*(_chkfloat_ (value)==0)&&*/(value>=0.00)&&(value<=9.99))
+					  if(string_to_float(channels[CAL_ENTER_FIELD].string_buf,&value)==0)
 					  {
-							switch(type)
-							{
-								case CAL_HI:
+						  if((isnan(value)==0)&&(value>=0.00)&&(value<=9999))
+						  {
+								switch(type)
 								{
-									channels[channel].calibrate.cal.cal_hi=value;
-									//сохранить параметр в eeprom
-								}
-								break;
+									case CAL_HI:
+									{
+										channels[channel].calibrate.cal.cal_hi=value;
+									}
+									break;
 
-								case CAL_LO:
-								{
-									channels[channel].calibrate.cal.cal_lo=value;
-								}
-								break;
+									case CAL_LO:
+									{
+										channels[channel].calibrate.cal.cal_lo=value;
+									}
+									break;
 
-								case UST_HI:
-								{
-									channels[channel].calibrate.cal.ust_hi=value;
-								}
-								break;
+									case UST_HI:
+									{
+										channels[channel].calibrate.cal.ust_hi=value;
+									}
+									break;
 
-								case UST_LO:
-								{
-									channels[channel].calibrate.cal.ust_lo=value;
+									case UST_LO:
+									{
+										channels[channel].calibrate.cal.ust_lo=value;
+									}
+									break;
 								}
-								break;
-							}
-							//SetCalibration(channel,type);
-					 }
-
+								//SetCalibration(channel,type);
+						 }
+					}
 					enter_flag=0;
 				    flag_menu_entry=0;
 					dispMenu();
@@ -619,16 +499,75 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 			case '>'://shift
 			{
 			 	current_char++;
-				if(current_char==1)
-				{
-					current_char=2;
-				}
+//				if(current_char==1)
+//				{
+//					current_char=2;
+//				}
+//
+//				if(current_char>4)
+//				{
+//					current_char=0;
+//				}
 
-				if(current_char>4)
+				switch(tab.indicators[0].decimal_point)
 				{
-					current_char=0;
-				}
+					case 0:
+					{
+						if(current_char>3)
+						{
+							current_char=0;
+						}
+					}
+					break;
 
+					case 1:
+					{
+						if(current_char==3)
+						{
+							current_char=4;
+						}
+
+						if(current_char>4)
+						{
+							current_char=0;
+						}
+					}
+					break;
+
+					case 2:
+					{
+						if(current_char==2)
+						{
+							current_char=3;
+						}
+
+						if(current_char>4)
+						{
+							current_char=0;
+						}
+					}
+					break;
+
+					case 3:
+					{
+						if(current_char==1)
+						{
+							current_char=2;
+						}
+
+						if(current_char>4)
+						{
+							current_char=0;
+						}
+					}
+					break;
+
+					default:
+					{
+
+					}
+					break;
+				}
 //				Set_Blink_Sym(&channels[CAL_ENTER_FIELD],current_char);
 			}
 			break;
@@ -640,7 +579,7 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 				{
 					channels[CAL_ENTER_FIELD].string_buf[current_char]='0';
 				}
-				channels[CAL_ENTER_FIELD].string_buf[1]='.';
+				//channels[CAL_ENTER_FIELD].string_buf[1]='.';
 				str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf);
 			}
 			break;
@@ -663,7 +602,7 @@ void CalibrationScreen(unsigned char channel)//экран калибровки канала
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position)
 {
-		if(sym_position<4)
+		if(sym_position<5)
 		{
 				sprintf(chn->string_mask,"XXXXX");
 				chn->string_mask[sym_position]=' ';
@@ -707,7 +646,7 @@ static void DisplayProcess(void *pvParameters)
 //	   {
 //			  value=GetCalibrateVal(i,channels[i].channel_data);
 //
-//			  if(_chkfloat_ (value)>1)
+//			  if(isnan (value)>1)
 //			  {
 //				   sprintf(channels[i].string_buf,"Err");
 //				   Set_Blink_Sym(&channels[i],BLINK_NONE);

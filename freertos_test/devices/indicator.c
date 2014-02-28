@@ -7,6 +7,8 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
+
+#include "string_utils.h"
 extern xSemaphoreHandle xSPI_Buf_Mutex;
 
 #define SYM_TAB_LEN 31
@@ -30,73 +32,77 @@ void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point)
 {
 	uint8_t str[16];
 
-	switch(decimal_point)//положение десятичной точки
+//	switch(decimal_point)//положение десятичной точки
+//	{
+//		case 0:
+//		{
+//			if(val<0)
+//			{
+//				val=0;
+//			}
+//
+//			if(val>9999)
+//			{
+//				val=9999;
+//			}
+//			sprintf(str,"%4d",(unsigned int)val);
+//		}
+//		break;
+//
+//		case 1:
+//		{
+//			if(val<0)
+//			{
+//				val=0;
+//			}
+//
+//			if(val>999.9)
+//			{
+//				val=999.9;
+//			}
+//			sprintf(str,"%3d.%1d",(unsigned int)val,(unsigned int)(val*10)%10);
+//		}
+//		break;
+//
+//		case 2:
+//		{
+//			if(val<0)
+//			{
+//				val=0;
+//			}
+//
+//			if(val>99.99)
+//			{
+//				val=99.99;
+//			}
+//			sprintf(str,"%2d.%2d",(unsigned int)val,(unsigned int)(val*100)%100);
+//		}
+//		break;
+//
+//		case 3:
+//		{
+//			if(val<0)
+//			{
+//				val=0;
+//			}
+//
+//			if(val>9.999)
+//			{
+//				val=9.999;
+//			}
+//			sprintf(str,"%1d.%3d",(unsigned int)val,(unsigned int)(val*1000)%1000);
+//		}
+//		break;
+//
+//		default :
+//		{
+//
+//		}
+//		break;
+//	}
+	if(float_to_string(val,str,decimal_point,' ')==1)
 	{
-		case 0:
-		{
-			if(val<0)
-			{
-				val=0;
-			}
-
-			if(val>9999)
-			{
-				val=9999;
-			}
-			sprintf(str,"%4d",(unsigned int)val);
-		}
-		break;
-
-		case 1:
-		{
-			if(val<0)
-			{
-				val=0;
-			}
-
-			if(val>999.9)
-			{
-				val=999.9;
-			}
-			sprintf(str,"%3d.%1d",(unsigned int)val,(unsigned int)(val*10)%10);
-		}
-		break;
-
-		case 2:
-		{
-			if(val<0)
-			{
-				val=0;
-			}
-
-			if(val>99.99)
-			{
-				val=99.99;
-			}
-			sprintf(str,"%2d.%2d",(unsigned int)val,(unsigned int)(val*100)%100);
-		}
-		break;
-
-		case 3:
-		{
-			if(val<0)
-			{
-				val=0;
-			}
-
-			if(val>9.999)
-			{
-				val=9.999;
-			}
-			sprintf(str,"%1d.%3d",(unsigned int)val,(unsigned int)(val*1000)%1000);
-		}
-		break;
-
-		default :
-		{
-
-		}
-		break;
+		return;//NaN
 	}
 
 	if( xSemaphoreTake( xSPI_Buf_Mutex, portMAX_DELAY ) == pdTRUE )
@@ -104,6 +110,7 @@ void indicators_set_num(struct indicator *ind,float val, uint8_t decimal_point)
 		str_to_ind(ind,str);
 		xSemaphoreGive( xSPI_Buf_Mutex );
 	}
+	return;
 }
 
 uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
@@ -167,7 +174,7 @@ uint8_t str_to_ind(struct indicator *ind,uint8_t *str)
             {
                if(str[i]==Sym_table[0][j])//
                {
-            	   tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]=(Sym_table[1][j])|(0x100*((buf_count-5)+1));//
+            	    tab.buses[ind->bus].bus_buf[buf_count][ind->number_in_bus]=(Sym_table[1][j])|(0x100*((buf_count-5)+1));//
                     buf_count++;
 
                     break;
