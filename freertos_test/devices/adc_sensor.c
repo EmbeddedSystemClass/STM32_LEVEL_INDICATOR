@@ -35,6 +35,12 @@ static void ADC_Poll_task(void *pvParameters);//
 uint16_t ADC_Data_1;
 extern struct tablo tab;//
 extern struct Channel  channels[CHANNEL_NUMBER];
+
+#define ADC_BUF_SIZE	32
+
+
+xQueueHandle xADCQueue;
+
 void ADC_Sensor_Init(void)//
 {
 
@@ -91,30 +97,27 @@ void ADC_Sensor_Init(void)//
 	 while (ADC_GetResetCalibrationStatus(ADC1));
 
 	 /* Enable JEOC interupt */
-	 ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE); // вкл. прерывание по окончанию преобразования инжектированной группы
+	 ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE); //
 	 /* Enable EOC interupt */
-//	 ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE); // вкл. прерывание по окончанию преобразования
+//	 ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE); //
 	 /* Start ADC1 calibaration */
 	 ADC_StartCalibration(ADC1);
 //	 /* Check the end of ADC1 calibration */
 	 while (ADC_GetCalibrationStatus(ADC1));
 
-//	 ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE); // программный запуск преобразования инжектированной группы
-//	 ADC_SoftwareStartConvCmd(ADC1,ENABLE); // программный запуск преобразования регулярной группы
+//	 ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE); //
+//	 ADC_SoftwareStartConvCmd(ADC1,ENABLE); //
+	 xADCQueue = xQueueCreate( 1, sizeof( uint16_t ) );
 	 xTaskCreate(ADC_Poll_task,(signed char*)"ADC_Poll_task",128,NULL, tskIDLE_PRIORITY + 1, NULL);
 }
 
-uint8_t adc_ready=0;
 ADC1_IRQHandler(void)
 {
 	if (ADC_GetITStatus(ADC1, ADC_IT_JEOC))
 	{
         ADC_ClearITPendingBit(ADC1, ADC_IT_JEOC);
         ADC_Data_1 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);
-//        ADC_Data_2 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2);
-//        ADC_Data_3 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_3);
-//        ADC_Data_4 = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_4);
-        adc_ready=1;
+        xQueueSendToBackFromISR( xADCQueue, &ADC_Data_1, 0 );
     }
 
 //	if (ADC_GetITStatus(ADC1, ADC_IT_EOC))
@@ -128,25 +131,33 @@ ADC1_IRQHandler(void)
 static void ADC_Poll_task(void *pvParameters)
 {
 	static uint32_t adc_accum=0;
-	uint8_t i=0;
+	static uint8_t adc_counter=0;
+	static uint16_t adc_buf[ADC_BUF_SIZE];
+
+	uint8_t i;
 	while(1)
 	{
-		adc_accum=0;
-		for(i=0;i<32;i++)
+
+	    vTaskDelay(5);
+	    ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
+
+		while( uxQueueMessagesWaiting(xADCQueue) == 0 )//adc poll
 		{
-			vTaskDelay(5);
-			ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
-			 while(!adc_ready)
-			 {
-				 taskYIELD();
-			 }
-			 adc_ready=0;
-			 adc_accum+=ADC_Data_1;
+			taskYIELD();
 		}
-//		vTaskDelay(50);
-		channels[0].channel_data=adc_accum/32;
+		xQueueReceive( xADCQueue, &adc_buf[adc_counter], 0 );
+		adc_counter=(adc_counter+1)&(ADC_BUF_SIZE-1);
+
+		adc_accum=0;
+		for(i=0;i<ADC_BUF_SIZE;i++)
+		{
+			adc_accum+=adc_buf[i];
+		}
+
+		channels[0].channel_data=adc_accum/ADC_BUF_SIZE;
 
 		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
+		taskYIELD();
 	}
 }
 

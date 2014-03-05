@@ -72,8 +72,8 @@
       <target file="stm32f10x_adc.o" lastModified="1447737b0f6">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
-      <target file="adc_sensor.o" lastModified="1447879d6fe">
-         <source file="..\..\..\devices\adc_sensor.c" lastModified="1447879cc02"/>
+      <target file="adc_sensor.o" lastModified="14492589f00">
+         <source file="..\..\..\devices\adc_sensor.c" lastModified="1449258951d"/>
       </target>
       <target file="channels.o" lastModified="1447737c569">
          <source file="..\..\..\protocols\channels.c" lastModified="1447273861c"/>
