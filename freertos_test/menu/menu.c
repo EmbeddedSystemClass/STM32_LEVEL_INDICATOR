@@ -249,7 +249,7 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 	{
 		case MENU_SET_BRIGHTNESS:
 		{	
-			//SetBrightnessKey(key);
+			SetBrightnessKey(key);
 		}
 		break;
 
@@ -329,14 +329,15 @@ void SetBrightnessKey(unsigned char key)
 
 			case '+'://increment
 			{
-				//brightness=(brightness+1)&0xF;
+				tab.indicators[0].brightness=IND_BRIGHTNESS|((tab.indicators[0].brightness+1)&0xF);
 			}
 			break;
 		}
 		
 		if(enter_flag)
 		{
-			SetBrightnessScreen();
+			//SetBrightnessScreen();
+			indicators_set_num(&tab.indicators[0],(float)(tab.indicators[0].brightness&0xF),0,"XXXXX");
 		}
 }
 

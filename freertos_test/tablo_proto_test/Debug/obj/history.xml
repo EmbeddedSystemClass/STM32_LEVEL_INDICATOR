@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="1447875ed1a">
-         <source file="..\..\..\menu\menu.c" lastModified="1447875da7c"/>
+      <target file="menu.o" lastModified="144967ca1fa">
+         <source file="..\..\..\menu\menu.c" lastModified="144967c8af7"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
@@ -72,8 +72,8 @@
       <target file="stm32f10x_adc.o" lastModified="1447737b0f6">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="144540a4e4d"/>
       </target>
-      <target file="adc_sensor.o" lastModified="14492589f00">
-         <source file="..\..\..\devices\adc_sensor.c" lastModified="1449258951d"/>
+      <target file="adc_sensor.o" lastModified="14496710aa1">
+         <source file="..\..\..\devices\adc_sensor.c" lastModified="14496621ff7"/>
       </target>
       <target file="channels.o" lastModified="1447737c569">
          <source file="..\..\..\protocols\channels.c" lastModified="1447273861c"/>
@@ -93,8 +93,8 @@
       <target file="dac.o" lastModified="1447737aef3">
          <source file="..\..\..\devices\dac.c" lastModified="1446df1632f"/>
       </target>
-      <target file="tablo.o" lastModified="144784c59da">
-         <source file="..\..\..\devices\tablo.c" lastModified="14462fb423a"/>
+      <target file="tablo.o" lastModified="144967be0dc">
+         <source file="..\..\..\devices\tablo.c" lastModified="144967bd92c"/>
       </target>
       <target file="main.o" lastModified="1447879d960">
          <source file="..\..\..\main.c" lastModified="1447879818b"/>

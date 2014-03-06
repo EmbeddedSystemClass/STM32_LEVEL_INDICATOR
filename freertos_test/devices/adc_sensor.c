@@ -1,4 +1,6 @@
 #include "adc_sensor.h"
+#include <stdlib.h>
+#include <string.h>
 
 
 #include <stm32f10x.h>
@@ -128,16 +130,35 @@ ADC1_IRQHandler(void)
 
 }
 
+void bubblesort(uint16_t *array, uint16_t length)
+{
+    uint16_t i, j;
+    uint16_t tmp;
+    for (i = 0; i < length -1; ++i)
+    {
+
+		for (j = 0; j < length - i - 1; ++j)
+		   {
+				if (array[j] > array[j + 1])
+				{
+				    tmp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = tmp;
+				}
+		 }
+    }
+}
+
 static void ADC_Poll_task(void *pvParameters)
 {
 	static uint32_t adc_accum=0;
 	static uint8_t adc_counter=0;
 	static uint16_t adc_buf[ADC_BUF_SIZE];
+	static uint16_t temp_buf[ADC_BUF_SIZE];
 
 	uint8_t i;
 	while(1)
 	{
-
 	    vTaskDelay(5);
 	    ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
 
@@ -148,15 +169,19 @@ static void ADC_Poll_task(void *pvParameters)
 		xQueueReceive( xADCQueue, &adc_buf[adc_counter], 0 );
 		adc_counter=(adc_counter+1)&(ADC_BUF_SIZE-1);
 
-		adc_accum=0;
-		for(i=0;i<ADC_BUF_SIZE;i++)
-		{
-			adc_accum+=adc_buf[i];
-		}
+		memcpy(temp_buf,adc_buf,ADC_BUF_SIZE*sizeof(uint16_t));
+		bubblesort(temp_buf, ADC_BUF_SIZE);
 
-		channels[0].channel_data=adc_accum/ADC_BUF_SIZE;
+//		adc_accum=0;
+//		for(i=0;i<ADC_BUF_SIZE;i++)
+//		{
+//			adc_accum+=adc_buf[i];
+//		}
+//
+//		channels[0].channel_data=adc_accum/ADC_BUF_SIZE;
+		channels[0].channel_data=(temp_buf[15]+temp_buf[16])/2;
 
-		DAC_SetChannel1Data(DAC_Align_12b_R,ADC_Data_1);
+		DAC_SetChannel1Data(DAC_Align_12b_R,(uint16_t)channels[0].channel_data);
 		taskYIELD();
 	}
 }
