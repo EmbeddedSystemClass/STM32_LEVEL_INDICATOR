@@ -34,11 +34,7 @@ extern unsigned char signal;
 
 static void DisplayProcess(void *pvParameters);//
 
-enum
-{
-	DYN_NOT_DISPLAY=0,
-	DYN_DISPALY_ON =1
-};
+
 
 enum
 {
@@ -66,7 +62,7 @@ menuItem * menuStack[10];
 uint8_t menuStackTop;
 
 //char buf[20];
-unsigned char dynamic_disp=0;//номер отображаемого динамического экрана
+//unsigned char dynamic_disp=0;//номер отображаемого динамического экрана
 
 
 //unsigned //char num_buf[8];
@@ -123,13 +119,11 @@ static uint8_t enter_flag=0; //зашли в поле ввода
 unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key);	 //обработка меню
 
 void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type);
-//void CalibrationScreen(unsigned char channel);//экран калибровки канала
-
 void SetBrightnessKey(unsigned char key);
-//void SetBrightnessScreen(void);
+void SetTypeOutKey(unsigned char key);
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position);
-void Set_Signal(unsigned char type);
+
 
 void menuChange(menuItem * NewMenu)
 {
@@ -160,12 +154,9 @@ unsigned char dispMenu(void)
 
 	if (selectedMenuItem == &m_s0i1) 
 	{ // мы на верхнем уровне
-		dynamic_disp= DYN_DISPALY_ON;
 	} 
 	else 
 	{
-		dynamic_disp=DYN_NOT_DISPLAY;
-
 		Set_Blink_Sym(&channels[0],BLINK_NONE);
 		str_to_ind(&tab.indicators[0],selectedMenuItem->Text,"XXXXX");
 	}
@@ -261,6 +252,11 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 		}
 		break;
 
+		case MENU_SET_TYPE_OUT:
+		{
+			SetTypeOutKey(key);
+		}
+		break;
 		
 		case MENU_CHN1_SET_AREA:
 		{
@@ -273,18 +269,6 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 			InputFieldKey(key,0,MENU_CHN1_SET_OFFSET);
 		}
 		break; 
-
-//		case MENU_CHN1_UST_HI:
-//		{
-//			CalibrationKey(key,0,UST_HI);
-//		}
-//		break;
-//
-//		case MENU_CHN1_UST_LO:
-//		{
-//			CalibrationKey(key,0,UST_LO);
-//		}
-//		break;
 	}	
 	return 0;
 }
@@ -344,10 +328,67 @@ void SetBrightnessKey(unsigned char key)
 			indicators_set_num(&tab.indicators[0],(float)(tab.indicators[0].brightness&0xF),0,"XXXXX");
 		}
 }
-
-#define CAL_ENTER_FIELD	0
-
 //-------------------------------------------------------
+enum
+{
+	TYPE_OUTPUT_LINEAR=0,
+	TYPE_OUTPUT_M3=1
+};
+
+void SetTypeOutKey(unsigned char key)
+{
+	switch(key)
+	{
+		case 'E'://enter
+		{
+			if(!enter_flag)
+			{
+			   //отобразить параметр
+			   channels[0].calibrate.cal.type_output&=0x1;
+			   enter_flag=1;
+			}
+			else
+			{
+				//сохранить параметр в eeprom
+				enter_flag=0;
+			    flag_menu_entry=0;
+				dispMenu();
+			}
+		}
+		break;
+
+//			case 'Q'//quit
+//			{
+//			}
+//			break;
+
+		case '>'://shift
+		{
+
+		}
+		break;
+
+		case '+'://increment
+		{
+			channels[0].calibrate.cal.type_output=(channels[0].calibrate.cal.type_output^1)&0x1;
+		}
+		break;
+	}
+
+	if(enter_flag)
+	{
+		if(channels[0].calibrate.cal.type_output==TYPE_OUTPUT_M3)
+		{
+			str_to_ind(&tab.indicators[0]," CUb","XXXXX");
+		}
+		else
+		{
+			str_to_ind(&tab.indicators[0],"LInE","XXXXX");
+		}
+	}
+}
+//-------------------------------------------------------
+#define CAL_ENTER_FIELD	0
 void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type)
 {
 		float value;
@@ -516,18 +557,8 @@ void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type)
 
 		if(enter_flag)
 		{
-//			CalibrationScreen(channel);
 		}
 }
-
-//void CalibrationScreen(unsigned char channel)//экран калибровки канала
-//{
-//		unsigned char i;
-//		  menuItem   * tempMenu;
-//
-//		dynamic_disp=DYN_NOT_DISPLAY;
-//}
-
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position)
 {

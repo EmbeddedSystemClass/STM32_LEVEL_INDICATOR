@@ -25,7 +25,7 @@ void ChannelsInit(void) //using 0//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿
 			channels[0].settings.set.state_byte_2=0x06;
 			channels[0].channel_data=0;
 			channels[0].channel_data_calibrate=0;
-			channels[0].calibrate.cal.calibrate=0;
+//			channels[0].calibrate.cal.calibrate=0;
 
 	return;
 }

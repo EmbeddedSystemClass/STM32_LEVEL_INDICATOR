@@ -96,35 +96,35 @@ struct Channel
     float  channel_data_calibrate;//калиброванное значение канала
 	unsigned char string_buf[8];
 	unsigned char string_mask[8];
-	unsigned char blink;
+//	unsigned char blink;
 
 	union
 		{
 			struct
 			{
-				unsigned long  adc_hi;
-				float 		   cal_hi;
-
-				unsigned long  adc_lo;
-				float 		   cal_lo;
-
-				float		   ust_hi;
-				float		   ust_lo;
+//				unsigned long  adc_hi;
+//				float 		   cal_hi;
+//
+//				unsigned long  adc_lo;
+//				float 		   cal_lo;
+//
+//				float		   ust_hi;
+//				float		   ust_lo;
 
 				uint16_t 	   offset;//offset in mm
 				float 		   area;//
 				uint8_t 	   type_output;// m3 or mm
 
-				unsigned char calibrate;//
+//				unsigned char calibrate;//
 			} cal;
 			unsigned long serialize[7];//
 		} calibrate;
 
 } ;
 //---------------------------------------
-void ChannelsInit(void);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-//void Store_Channels_Data(void);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
-//void Restore_Channels_Data(void);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+void ChannelsInit(void);//
+//void Store_Channels_Data(void);//
+//void Restore_Channels_Data(void);//
 
 //---------------------------------------
 #endif
