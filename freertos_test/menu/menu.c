@@ -91,7 +91,7 @@ MAKE_MENU(m_s0i1,  NULL_ENTRY,NULL_ENTRY,  NULL_ENTRY, m_s1i1,       0, 	"DATA S
 
 MAKE_MENU(m_s1i1,  m_s1i2,    NULL_ENTRY,  m_s0i1,     m_s3i1,       0, 					" 5Et");
 MAKE_MENU(m_s1i2,  m_s1i3,	  m_s1i1,      m_s0i1,     NULL_ENTRY,   MENU_SET_BRIGHTNESS,   " brI");
-MAKE_MENU(m_s1i3,  NULL_ENTRY,m_s1i2,      m_s0i1,     NULL_ENTRY,   MENU_SET_TYPE_OUT  ,   "t4PE");
+MAKE_MENU(m_s1i3,  NULL_ENTRY,m_s1i2,      m_s0i1,     NULL_ENTRY,   MENU_SET_TYPE_OUT  ,   "tYPE");
 
 // Настройка канала	 1
 MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s1i1,     NULL_ENTRY,   MENU_CHN1_SET_AREA,    "ArEA");
@@ -580,6 +580,7 @@ void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position)
 	}
 }
 //--------------------------------------------------------
+#define BEAM_LEN_MM	2500.0
 static void DisplayProcess(void *pvParameters)
 {
 
@@ -613,7 +614,16 @@ static void DisplayProcess(void *pvParameters)
 
    if(selectedMenuItem == &m_s0i1)//main screen
    {
-	   indicators_set_num(&tab.indicators[0],channels[0].channel_data,0,"XXXXX");
+		if(channels[0].calibrate.cal.type_output==TYPE_OUTPUT_M3)
+		{
+			float volume;
+			volume=(((float)channels[0].calibrate.cal.offset+((float)channels[0].channel_data/4096)*BEAM_LEN_MM)/1000)*(float)channels[0].calibrate.cal.area;
+			indicators_set_num(&tab.indicators[0],volume,1,"XXXXX");
+		}
+		else
+		{
+			indicators_set_num(&tab.indicators[0],((float)channels[0].channel_data/4096)*BEAM_LEN_MM,0,"XXXXX");
+		}
    }
 
    if(((selectedMenuItem == &m_s3i1)||(selectedMenuItem == &m_s3i2)/*||(selectedMenuItem == &m_s3i3)||(selectedMenuItem == &m_s3i4)||(selectedMenuItem == &m_s3i5)*/)&&enter_flag)//settings screen

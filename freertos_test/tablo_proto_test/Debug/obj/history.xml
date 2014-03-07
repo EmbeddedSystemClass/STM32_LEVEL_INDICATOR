@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="1449c06f6ef">
-         <source file="..\..\..\menu\menu.c" lastModified="1449c06e319"/>
+      <target file="menu.o" lastModified="1449c65d426">
+         <source file="..\..\..\menu\menu.c" lastModified="1449c65c467"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>
@@ -30,11 +30,11 @@
       <target file="queue.o" lastModified="1447737c336">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\queue.c" lastModified="14453fe08b3"/>
       </target>
-      <target file="indicator.o" lastModified="1449c089b29">
-         <source file="..\..\..\devices\indicator.c" lastModified="1449c089194"/>
-      </target>
       <target file="timers.o" lastModified="1447737ac14">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\timers.c" lastModified="14453fe08c2"/>
+      </target>
+      <target file="indicator.o" lastModified="1449c55221a">
+         <source file="..\..\..\devices\indicator.c" lastModified="1449c54a633"/>
       </target>
       <target file="tasks.o" lastModified="1447737b02b">
          <source file="..\..\..\FreeRTOSV7.1.0\Source\tasks.c" lastModified="14453fe08c2"/>
