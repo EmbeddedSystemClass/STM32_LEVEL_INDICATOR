@@ -111,6 +111,10 @@ struct Channel
 				float		   ust_hi;
 				float		   ust_lo;
 
+				uint16_t 	   offset;//offset in mm
+				float 		   area;//
+				uint8_t 	   type_output;// m3 or mm
+
 				unsigned char calibrate;//
 			} cal;
 			unsigned long serialize[7];//

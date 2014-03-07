@@ -92,15 +92,23 @@ menuItem        Null_Menu = {(void*)0, (void*)0, (void*)0, (void*)0, 0, {0x00}};
 //                 NEXT,      PREVIOUS     PARENT,     CHILD
 MAKE_MENU(m_s0i1,  NULL_ENTRY,NULL_ENTRY,  NULL_ENTRY, m_s1i1,       0, 	"DATA SCREEN");
 
+
 MAKE_MENU(m_s1i1,  m_s1i2,    NULL_ENTRY,  m_s0i1,     m_s3i1,       0, 					" 5Et");
-MAKE_MENU(m_s1i2,  NULL_ENTRY,m_s1i1,      m_s0i1,     NULL_ENTRY,   MENU_SET_BRIGHTNESS,   " brI");
+MAKE_MENU(m_s1i2,  m_s1i3,	  m_s1i1,      m_s0i1,     NULL_ENTRY,   MENU_SET_BRIGHTNESS,   " brI");
+MAKE_MENU(m_s1i3,  NULL_ENTRY,m_s1i2,      m_s0i1,     NULL_ENTRY,   MENU_SET_TYPE_OUT  ,   "t4PE");
 
 // Настройка канала	 1
-MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_HI, 		"C hI");
-MAKE_MENU(m_s3i2,  m_s3i3,    m_s3i1,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_LO, 		"C LO");
-MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		"U hI");
-MAKE_MENU(m_s3i4,  m_s3i5,    m_s3i3,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		"U LO");
-MAKE_MENU(m_s3i5,  NULL_ENTRY,m_s3i4,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_DIAP, 		"dIAP");
+MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s1i1,     NULL_ENTRY,   MENU_CHN1_SET_AREA,    "ArEA");
+MAKE_MENU(m_s3i2,  NULL_ENTRY,m_s3i1,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_SET_OFFSET, 	"OFF5");
+//MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		"U hI");
+//MAKE_MENU(m_s3i4,  m_s3i5,    m_s3i3,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		"U LO");
+//MAKE_MENU(m_s3i5,  NULL_ENTRY,m_s3i4,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_DIAP, 		"dIAP");
+
+//MAKE_MENU(m_s3i1,  m_s3i2,    NULL_ENTRY,  m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_HI, 		"C hI");
+//MAKE_MENU(m_s3i2,  m_s3i3,    m_s3i1,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_CAL_LO, 		"C LO");
+//MAKE_MENU(m_s3i3,  m_s3i4,	  m_s3i2,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_HI, 		"U hI");
+//MAKE_MENU(m_s3i4,  m_s3i5,    m_s3i3,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_UST_LO, 		"U LO");
+//MAKE_MENU(m_s3i5,  NULL_ENTRY,m_s3i4,      m_s1i1,     NULL_ENTRY,   MENU_CHN1_DIAP, 		"dIAP");
 
 
 enum
@@ -114,11 +122,11 @@ static uint8_t enter_flag=0; //зашли в поле ввода
 
 unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key);	 //обработка меню
 
-void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type);
-void CalibrationScreen(unsigned char channel);//экран калибровки канала
+void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type);
+//void CalibrationScreen(unsigned char channel);//экран калибровки канала
 
 void SetBrightnessKey(unsigned char key);
-void SetBrightnessScreen(void);
+//void SetBrightnessScreen(void);
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position);
 void Set_Signal(unsigned char type);
@@ -254,29 +262,29 @@ unsigned char menuHandler(menuItem* currentMenuItem,unsigned char key)	 //обрабо
 		break;
 
 		
-		case MENU_CHN1_CAL_HI:
+		case MENU_CHN1_SET_AREA:
 		{
-			CalibrationKey(key,0,CAL_HI);
+			InputFieldKey(key,0,MENU_CHN1_SET_AREA);
 		}
 		break; 
 
-		case MENU_CHN1_CAL_LO:
+		case MENU_CHN1_SET_OFFSET:
 		{
-			CalibrationKey(key,0,CAL_LO);
+			InputFieldKey(key,0,MENU_CHN1_SET_OFFSET);
 		}
 		break; 
 
-		case MENU_CHN1_UST_HI:
-		{
-			CalibrationKey(key,0,UST_HI);
-		}
-		break; 
-
-		case MENU_CHN1_UST_LO:
-		{
-			CalibrationKey(key,0,UST_LO);
-		}
-		break; 
+//		case MENU_CHN1_UST_HI:
+//		{
+//			CalibrationKey(key,0,UST_HI);
+//		}
+//		break;
+//
+//		case MENU_CHN1_UST_LO:
+//		{
+//			CalibrationKey(key,0,UST_LO);
+//		}
+//		break;
 	}	
 	return 0;
 }
@@ -288,9 +296,7 @@ unsigned char startMenu(void)
 	dispMenu();
 	xTaskCreate(DisplayProcess,(signed char*)"DisplayProcess",256,NULL, tskIDLE_PRIORITY + 1, NULL);
     Set_Blink_Sym(&channels[0],BLINK_NONE);
-
-	//	Set_Signal(SIGNAL_OFF);
-    tab.indicators[0].decimal_point=2;
+    tab.indicators[0].decimal_point=0;
 	return 0;
 }
 //-------------------------------------------------------
@@ -308,7 +314,6 @@ void SetBrightnessKey(unsigned char key)
 				else
 				{
 					//сохранить параметр в eeprom
-					//SetBrightness(brightness);
 					enter_flag=0;
 				    flag_menu_entry=0;
 					dispMenu(); 
@@ -336,29 +341,14 @@ void SetBrightnessKey(unsigned char key)
 		
 		if(enter_flag)
 		{
-			//SetBrightnessScreen();
 			indicators_set_num(&tab.indicators[0],(float)(tab.indicators[0].brightness&0xF),0,"XXXXX");
 		}
 }
 
-void SetBrightnessScreen(void)
-{
-		unsigned char i;
-		dynamic_disp=DYN_NOT_DISPLAY;
-//	    for(i=0;i<CHANNEL_NUMBER;i++)
-//	    {
-//			memset(channels[i].string_buf,' ',3);
-//			channels[i].string_buf[3]=0;
-//		}
-//		sprintf(channels[0].string_buf," % 3d",brightness);
-//		memcpy(channels[1].string_buf,selectedMenuItem->Text,4);
-}
-
-
 #define CAL_ENTER_FIELD	0
 
 //-------------------------------------------------------
-void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
+void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type)
 {
 		float value;
 		static unsigned char  current_char=0;
@@ -372,39 +362,38 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 
 					switch(type)
 					{
-						case CAL_HI:
+						case MENU_CHN1_SET_AREA:
 						{
-							value=channels[channel].calibrate.cal.cal_hi;
+							value=channels[channel].calibrate.cal.area;
+							tab.indicators[0].decimal_point=1;
+							  if((isnan(value)==0)&&(value>=0.0)&&(value<=999.9))
+							  {
+								  float_to_string(value,channels[CAL_ENTER_FIELD].string_buf,tab.indicators[0].decimal_point,'1');
+							  }
+							  else
+							  {
+								  sprintf(channels[CAL_ENTER_FIELD].string_buf,"000.0");
+							  }
 						}
 						break;
 
-						case CAL_LO:
+						case MENU_CHN1_SET_OFFSET:
 						{
-							value=channels[channel].calibrate.cal.cal_lo;
-						}
-						break;
-
-						case UST_HI:
-						{
-							value=channels[channel].calibrate.cal.ust_hi;
-						}
-						break;
-
-						case UST_LO:
-						{
-							value=channels[channel].calibrate.cal.ust_lo;
+							value=(float)channels[channel].calibrate.cal.offset;
+							tab.indicators[0].decimal_point=0;
+						  if((value>=0.0)&&(value<=9999))
+						  {
+							  float_to_string(value,channels[CAL_ENTER_FIELD].string_buf,tab.indicators[0].decimal_point,'0');
+						  }
+						  else
+						  {
+							  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0000");
+						  }
 						}
 						break;
 					}
 
-				  if((isnan(value)==0)&&(value>=0.00)&&(value<=9999))
-				  {
-					  float_to_string(value,channels[CAL_ENTER_FIELD].string_buf,tab.indicators[0].decimal_point,'0');
-				  }
-				  else
-				  {
-					  sprintf(channels[CAL_ENTER_FIELD].string_buf,"0.000");
-				  }
+
 				  str_to_ind(&tab.indicators[0],channels[CAL_ENTER_FIELD].string_buf,"XXXXX");
 
 				  enter_flag=1;
@@ -418,27 +407,15 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 						  {
 								switch(type)
 								{
-									case CAL_HI:
+									case MENU_CHN1_SET_AREA:
 									{
-										channels[channel].calibrate.cal.cal_hi=value;
+										channels[channel].calibrate.cal.area=value;
 									}
 									break;
 
-									case CAL_LO:
+									case MENU_CHN1_SET_OFFSET:
 									{
-										channels[channel].calibrate.cal.cal_lo=value;
-									}
-									break;
-
-									case UST_HI:
-									{
-										channels[channel].calibrate.cal.ust_hi=value;
-									}
-									break;
-
-									case UST_LO:
-									{
-										channels[channel].calibrate.cal.ust_lo=value;
+										channels[channel].calibrate.cal.offset=(uint16_t)value;
 									}
 									break;
 								}
@@ -543,38 +520,33 @@ void CalibrationKey(unsigned char key,unsigned char channel,unsigned char type)
 		}
 }
 
-void CalibrationScreen(unsigned char channel)//экран калибровки канала
-{
-		unsigned char i;
-		  menuItem   * tempMenu;
-
-		dynamic_disp=DYN_NOT_DISPLAY;
-}
+//void CalibrationScreen(unsigned char channel)//экран калибровки канала
+//{
+//		unsigned char i;
+//		  menuItem   * tempMenu;
+//
+//		dynamic_disp=DYN_NOT_DISPLAY;
+//}
 
 
 void Set_Blink_Sym(struct Channel *chn,unsigned char sym_position)
 {
-		if(sym_position<5)
+	if(sym_position<5)
+	{
+			sprintf(chn->string_mask,"XXXXX");
+			chn->string_mask[sym_position]=' ';
+	}
+	else
+	{
+		if(sym_position==0xF)
 		{
-				sprintf(chn->string_mask,"XXXXX");
-				chn->string_mask[sym_position]=' ';
+			sprintf(chn->string_mask,"     ");
 		}
 		else
 		{
-			if(sym_position==0xF)
-			{
-				sprintf(chn->string_mask,"     ");
-			}
-			else
-			{
-				sprintf(chn->string_mask,"XXXXX");
-			}
+			sprintf(chn->string_mask,"XXXXX");
 		}
-}
-//--------------------------------------------------------
-void Set_Signal(unsigned char type)
-{
-	signal=type&0xF;
+	}
 }
 //--------------------------------------------------------
 static void DisplayProcess(void *pvParameters)
@@ -585,7 +557,7 @@ static void DisplayProcess(void *pvParameters)
   uint8_t key;
   uint8_t blink_flag=0;
   uint8_t blink_count=0;
-
+  //  wdt_count[Display_Proc].process_state=RUN;
   while(1) 
   {
 //	wdt_count[Display_Proc].process_state=IDLE;  
@@ -607,13 +579,13 @@ static void DisplayProcess(void *pvParameters)
 		blink_flag^=1;
 	}
 
- //  wdt_count[Display_Proc].process_state=RUN;
+
    if(selectedMenuItem == &m_s0i1)//main screen
    {
 	   indicators_set_num(&tab.indicators[0],channels[0].channel_data,0,"XXXXX");
    }
 
-   if(((selectedMenuItem == &m_s3i1)||(selectedMenuItem == &m_s3i2)||(selectedMenuItem == &m_s3i3)||(selectedMenuItem == &m_s3i4)||(selectedMenuItem == &m_s3i5))&&enter_flag)//settings screen
+   if(((selectedMenuItem == &m_s3i1)||(selectedMenuItem == &m_s3i2)/*||(selectedMenuItem == &m_s3i3)||(selectedMenuItem == &m_s3i4)||(selectedMenuItem == &m_s3i5)*/)&&enter_flag)//settings screen
    {
 	   if(blink_flag)
 	   {
@@ -625,8 +597,7 @@ static void DisplayProcess(void *pvParameters)
 	   }
 
    }
-
-//	wdt_count[Display_Proc].count++;
 	taskYIELD();
+	//	wdt_count[Display_Proc].count++;
   }
  }
