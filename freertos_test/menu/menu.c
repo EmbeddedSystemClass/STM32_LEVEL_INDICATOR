@@ -36,13 +36,13 @@ static void DisplayProcess(void *pvParameters);//
 
 
 
-enum
-{
-	CAL_HI=0,
-	CAL_LO,
-	UST_HI,
-	UST_LO
-};
+//enum
+//{
+//	CAL_HI=0,
+//	CAL_LO,
+//	UST_HI,
+//	UST_LO
+//};
 
 
 uint8_t flag_menu_entry=0;//вошли в меню
@@ -298,6 +298,7 @@ void SetBrightnessKey(unsigned char key)
 				else
 				{
 					//сохранить параметр в eeprom
+					Store_Channels_Data();
 					enter_flag=0;
 				    flag_menu_entry=0;
 					dispMenu(); 
@@ -329,11 +330,7 @@ void SetBrightnessKey(unsigned char key)
 		}
 }
 //-------------------------------------------------------
-enum
-{
-	TYPE_OUTPUT_LINEAR=0,
-	TYPE_OUTPUT_M3=1
-};
+
 
 void SetTypeOutKey(unsigned char key)
 {
@@ -350,6 +347,7 @@ void SetTypeOutKey(unsigned char key)
 			else
 			{
 				//сохранить параметр в eeprom
+				Store_Channels_Data();
 				enter_flag=0;
 			    flag_menu_entry=0;
 				dispMenu();
@@ -461,6 +459,7 @@ void InputFieldKey(unsigned char key,unsigned char channel,unsigned char type)
 									break;
 								}
 								//SetCalibration(channel,type);
+								Store_Channels_Data();
 						 }
 					}
 					enter_flag=0;

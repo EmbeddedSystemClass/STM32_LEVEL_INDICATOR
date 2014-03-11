@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.2 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=tablo_proto_test.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\tablo_proto_test -TC:\CooCox\CoIDE\configuration\ProgramData\tablo_proto_test/link.ld -g -LC:\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\thumb2 -lm">
-      <target file="tablo_proto_test.elf" lastModified="1449c65d6c6">
+      <target file="tablo_proto_test.elf" lastModified="144b008ea1c">
          <source file="C:\CooCox\CoIDE\gcc\Sourcery G++ Lite\arm-none-eabi\lib\thumb2\libm.a" lastModified="12c19b36500"/>
          <source file="..\obj\stm32f10x_tim.o" lastModified="1447737a3e6"/>
          <source file="..\obj\startup_stm32f10x_md_vl.o" lastModified="1447737a463"/>
@@ -9,10 +9,10 @@
          <source file="..\obj\system_stm32f10x.o" lastModified="1447737a58c"/>
          <source file="..\obj\stm32f10x_pwr.o" lastModified="1447737a629"/>
          <source file="..\obj\stm32f10x_gpio.o" lastModified="1447737a6b5"/>
-         <source file="..\obj\adc_sensor.o" lastModified="1449c0687ca"/>
+         <source file="..\obj\adc_sensor.o" lastModified="144b00257bd"/>
          <source file="..\obj\stm32f10x_dac.o" lastModified="1447737a87a"/>
          <source file="..\obj\indicator.o" lastModified="1449c55221a"/>
-         <source file="..\obj\main.o" lastModified="1449bd4920e"/>
+         <source file="..\obj\main.o" lastModified="144b00258a7"/>
          <source file="..\obj\timers.o" lastModified="1447737ac14"/>
          <source file="..\obj\tablo.o" lastModified="144967be0dc"/>
          <source file="..\obj\printf.o" lastModified="1447737ad8b"/>
@@ -22,7 +22,7 @@
          <source file="..\obj\stm32f10x_adc.o" lastModified="1447737b0f6"/>
          <source file="..\obj\string_utils.o" lastModified="144779c61e1"/>
          <source file="..\obj\keyboard.o" lastModified="1449bd49317"/>
-         <source file="..\obj\menu.o" lastModified="1449c65d426"/>
+         <source file="..\obj\menu.o" lastModified="144b008e6c1"/>
          <source file="..\obj\list.o" lastModified="1447737c048"/>
          <source file="..\obj\syscalls.o" lastModified="1447737c0f4"/>
          <source file="..\obj\stm32f10x_flash.o" lastModified="1447737c1cf"/>
@@ -30,7 +30,7 @@
          <source file="..\obj\queue.o" lastModified="1447737c336"/>
          <source file="..\obj\stm32f10x_dma.o" lastModified="1447737c3f2"/>
          <source file="..\obj\croutine.o" lastModified="1447737c4ad"/>
-         <source file="..\obj\channels.o" lastModified="1449c069140"/>
+         <source file="..\obj\channels.o" lastModified="144b008e77c"/>
          <source file="..\obj\spi_bus.o" lastModified="1447879d9fc"/>
          <source file="..\obj\misc.o" lastModified="1447737c6b1"/>
          <source file="..\obj\stm32f10x_spi.o" lastModified="1447737c78b"/>

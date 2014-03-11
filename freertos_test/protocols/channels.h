@@ -21,8 +21,8 @@
 #define DESC_BANK1_WRITE_END_ADDR    ((uint32_t)0x08020800)
 
 
-#define BANK1_WRITE_START_ADDR  ((uint32_t)0x08020000)
-#define BANK1_WRITE_END_ADDR    ((uint32_t)0x08020400)
+#define BANK1_WRITE_START_ADDR  ((uint32_t)0x08010000)
+#define BANK1_WRITE_END_ADDR    ((uint32_t)0x08010400)
 
 #ifdef STM32F10X_XL
   #define BANK2_WRITE_START_ADDR   ((uint32_t)0x08088000)
@@ -74,6 +74,12 @@
 
 #define CHNL_MEMORY		8
 	#define CHNL_MEMORY_EEPROM	0
+
+enum
+{
+	TYPE_OUTPUT_LINEAR=0,
+	TYPE_OUTPUT_M3=1
+};
 //---------------------------------------
 struct Channel
 {
@@ -114,17 +120,18 @@ struct Channel
 				uint16_t 	   offset;//offset in mm
 				float 		   area;//
 				uint8_t 	   type_output;// m3 or mm
+				uint8_t		   brightness;
 
 //				unsigned char calibrate;//
 			} cal;
-			unsigned long serialize[7];//
+			uint32_t serialize[2];//
 		} calibrate;
 
 } ;
 //---------------------------------------
 void ChannelsInit(void);//
-//void Store_Channels_Data(void);//
-//void Restore_Channels_Data(void);//
+void Store_Channels_Data(void);//
+void Restore_Channels_Data(void);//
 
 //---------------------------------------
 #endif

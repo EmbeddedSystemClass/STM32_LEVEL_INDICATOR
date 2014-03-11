@@ -223,7 +223,7 @@
       </source>
       <source file="..\..\..\FreeRTOSV7.1.0\Source\include\projdefs.h" lastModified="14453fe0893">
       </source>
-      <source file="..\..\..\main.c" lastModified="1447879895b">
+      <source file="..\..\..\main.c" lastModified="144aff6f36b">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
@@ -242,6 +242,7 @@
          <include file="..\..\..\devices\dac.h"/>
          <include file="..\..\..\menu\menu.h"/>
          <include file="..\..\..\devices\keyboard.h"/>
+         <include file="..\..\..\protocols\channels.h"/>
       </source>
       <source file="..\..\..\devices\buzzer.h" lastModified="14453fe08e2">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
@@ -252,7 +253,7 @@
       </source>
       <source file="..\..\..\devices\adc_sensor.h" lastModified="1446db0311f">
       </source>
-      <source file="..\..\..\protocols\channels.h" lastModified="1449bf80d7d">
+      <source file="..\..\..\protocols\channels.h" lastModified="144b0024ca1">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
@@ -287,9 +288,6 @@
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\task.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\queue.h"/>
          <include file="..\..\..\FreeRTOSV7.1.0\Source\include\timers.h"/>
-      </source>
-      <source file="..\..\..\protocols\channels.c" lastModified="1449bf721c5">
-         <include file="..\..\..\protocols\channels.h"/>
       </source>
       <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="144540a3b71">
          <include file="..\..\..\stm_lib\inc\stm32f10x_tim.h"/>
