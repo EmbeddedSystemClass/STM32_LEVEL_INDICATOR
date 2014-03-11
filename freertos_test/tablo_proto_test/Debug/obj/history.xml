@@ -18,8 +18,8 @@
       <target file="stm32f10x_gpio.o" lastModified="1447737a6b5">
          <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="14454098d10"/>
       </target>
-      <target file="menu.o" lastModified="144b02cf827">
-         <source file="..\..\..\menu\menu.c" lastModified="144b004fc31"/>
+      <target file="menu.o" lastModified="144b0fc5c12">
+         <source file="..\..\..\menu\menu.c" lastModified="144b0fbff2d"/>
       </target>
       <target file="misc.o" lastModified="1447737c6b1">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="144540a660b"/>

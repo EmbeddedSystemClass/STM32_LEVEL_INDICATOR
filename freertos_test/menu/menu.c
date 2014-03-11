@@ -613,7 +613,8 @@ static void DisplayProcess(void *pvParameters)
 
    if(selectedMenuItem == &m_s0i1)//main screen
    {
-		if(channels[0].calibrate.cal.type_output==TYPE_OUTPUT_M3)
+	   vTaskDelay(150);
+	   if(channels[0].calibrate.cal.type_output==TYPE_OUTPUT_M3)
 		{
 			float volume;
 			volume=(((float)channels[0].calibrate.cal.offset+((float)channels[0].channel_data/4096)*BEAM_LEN_MM)/1000)*(float)channels[0].calibrate.cal.area;
