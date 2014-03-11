@@ -58,8 +58,8 @@ void Store_Channels_Data(void) //
 
 	for(i=0;i<CHANNEL_NUMBER;i++)
 	{
-		channels[i].calibrate.cal.brightness=tab.indicators[i].brightness;
-		for(j=0;j<2;j++)
+		channels[i].calibrate.cal.brightness=tab.indicators[i].brightness&0xF;
+		for(j=0;j<4;j++)
 		{
 			FLASHStatus = FLASH_ProgramWord(Address, channels[i].calibrate.serialize[j]);
 		    Address = Address + 4;
@@ -67,23 +67,23 @@ void Store_Channels_Data(void) //
 	}
     FLASH_LockBank1();
 
-    /* Check the corectness of written data */
-    Address = BANK1_WRITE_START_ADDR;
-
-    while((Address < BANK1_WRITE_END_ADDR) && (MemoryProgramStatus != FAILED))
-    {
-        if((*(__IO uint32_t*) Address) != Data)
-        {
-            MemoryProgramStatus = FAILED;
-        }
-        Address += 4;
-    }
-
-    if( MemoryProgramStatus == FAILED)
-    {
-       // while(1);
-    	//FlashError=1;
-    }
+//    /* Check the corectness of written data */
+//    Address = BANK1_WRITE_START_ADDR;
+//
+//    while((Address < BANK1_WRITE_END_ADDR) && (MemoryProgramStatus != FAILED))
+//    {
+//        if((*(__IO uint32_t*) Address) != Data)
+//        {
+//            MemoryProgramStatus = FAILED;
+//        }
+//        Address += 4;
+//    }
+//
+//    if( MemoryProgramStatus == FAILED)
+//    {
+//       // while(1);
+//    	//FlashError=1;
+//    }
 	return;
 }
 //-----------------------------------
@@ -94,7 +94,7 @@ void Restore_Channels_Data(void) //using 0//
 	Address = BANK1_WRITE_START_ADDR;
 	for(i=0;i<CHANNEL_NUMBER;i++)
 	{
-		for(j=0;j<2;j++)
+		for(j=0;j<4;j++)
 		{
 			channels[i].calibrate.serialize[j]=(*(__IO uint32_t*) Address);
 			Address += 4;
@@ -118,7 +118,8 @@ void Restore_Channels_Data(void) //using 0//
 			{
 				channels[i].calibrate.cal.brightness=0xF;
 			}
-			tab.indicators[i].brightness=channels[i].calibrate.cal.brightness;
+
+			tab.indicators[i].brightness=channels[i].calibrate.cal.brightness|IND_BRIGHTNESS;
 
 	}
 	return;

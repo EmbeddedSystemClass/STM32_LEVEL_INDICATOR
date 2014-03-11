@@ -119,12 +119,13 @@ struct Channel
 
 				uint16_t 	   offset;//offset in mm
 				float 		   area;//
-				uint8_t 	   type_output;// m3 or mm
 				uint8_t		   brightness;
+				uint8_t 	   type_output;// m3 or mm
+
 
 //				unsigned char calibrate;//
 			} cal;
-			uint32_t serialize[2];//
+			uint32_t serialize[4];//
 		} calibrate;
 
 } ;
